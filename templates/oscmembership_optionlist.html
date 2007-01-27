@@ -1,0 +1,23 @@
+<table class="outer">
+<h2><{$title}></h2>
+<tr><TD colspan="4">
+<a href='osclistdetailform.php?id=<{$id}>&action=create'>
+<{$option_class}></a>
+
+</TD></tr>
+  <tr>
+    <th><input name="allbox" id="allbox" onclick="xoopsCheckGroup('notificationlist', 'allbox', 'del_mod[]');" type="checkbox" value="<{$lang_checkall}>" /></th>
+    <th><{$osc_optionsort}></th>
+    <th><{$osc_optionname}></th>
+    <th>&nbsp;</th>
+  </tr>
+<{foreach item=optionitem from=$optionitems}>
+  <tr>
+<td width=10><input name="chk<{$optionitem.loopcount}>" value="<{$optionitem.optionid}>" type="checkbox"></td>
+    <td><{$optionitem.optionsequence}></td>
+    <td><{$optionitem.optionname}></td>
+    <td><a href='osclistdetailform.php?optionid=<{$optionitem.optionid}>&id=<{$id}>&action=save'><{$oscmem_edit}></a></td>
+
+    </tr>
+<{/foreach}>
+</table>

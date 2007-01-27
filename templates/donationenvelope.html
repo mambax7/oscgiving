@@ -1,0 +1,49 @@
+<h2 class=comTitle><{$title}></h2>
+
+<table class='outer'>
+<tr class="odd">
+<td width=30%><{$oscgiv_assignedenvelopes}></td><td><{$assignedenvelopes}></td>
+</tr>
+<tr class="even">
+<td><{$oscgiv_activeenvelopes}></td><td><{$activeenvelopes}></td>
+</tr>
+<tr class="odd">
+<TD><{$oscgiv_highestenvelopenumber}></TD><td><{$highestenvelope}>
+</td>
+</tr>
+</table>
+<script type="text/javascript">
+function confirmation() {
+	var answer = confirm("<{$oscgiv_envelopassignconfirm}>");
+	if (answer)
+	{
+		return true;	
+	}
+	else{
+		return false;
+	}
+}
+</script>
+
+
+</script>
+<table align="center" cellpadding="5" cellspacing="1" border="0">
+	<tr>
+		<td>
+			<br><br>
+			<form name="envelopes" method="POST" action="DonationEnvelopes.php" onsubmit="return confirmation();">
+			<a  href="DonationEnvelopeList.php"><{$oscgiv_displaylistassignedenvelopes}></a><br><br>
+			<input type="submit" name="Mode" id="Mode" value="<{$oscgiv_autoassignevelopeslink}>" 
+			onclick="envelopes.postaction.value='assign';">
+			<br><br>
+			<input type="submit" name="Mode" id="Mode" value="<{$oscgiv_reassignenvelopeslink}>" onclick="envelopes.postaction.value='reassign';">
+			</input>
+			
+			<input type="hidden" name="postaction">
+
+			</form>
+		</td>
+	</tr>
+</table>
+
+

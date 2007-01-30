@@ -145,19 +145,23 @@ function EnvelopeTable($header,&$data,$startIndex,$size)
 	}
 	
 
+	$person_handler = &xoops_getmodulehandler('person', 'oscmembership');
+	$person=$person_handler->create(false);
 		
 	for($i=0; $i < $maxColumnLength; $i++)
 	{
 		if ($Column1Size > 0) {
 			$row = $startIndex + $i;
-			$sName1 = FormatFullName($data[$row]['title'], $data[$row]['firstname'], $data[$row]['middlename'], $data[$row]['lastname'], $data[$row]['suffix'], 1);
-
-			if (strlen($data[$row]['address2']) > 0)
-				$sAddress1 = $data[$row]['address1'] . " " . $data[$row]['address2'];
-			else
-				$sAddress1 = $data[$row]['address1'];
+			$person=$data[$row];
 			
-			$sEnvelope1 = $data[$row]['envelope'];
+			$sName1 = FormatFullName($person->getVar('title'), $person->getVar('firstname'), $person->getVar('middlename'), $person->getVar('lastname'), $person->getVar('suffix'), 1);
+
+			if (strlen($person->getVar('address2')) > 0)
+				$sAddress1 = $person->getVar('address1') . " " . $person->getVar('address2');
+			else
+				$sAddress1 = $person->getVar('address1');
+			
+			$sEnvelope1 = $person->getVar('envelope');
 			$Column1Size--;
 		} else {
 			$sName1 = "";
@@ -167,14 +171,15 @@ function EnvelopeTable($header,&$data,$startIndex,$size)
 
 		if ($Column2Size > 0) {
 			$row = $startIndex + $maxColumnLength + $i;
-			$sName2 = FormatFullName('', $data[$row]['lastname'], $data[$row]['firstname'], $data[$row]['address1'], $data[$row]['address2'], 1);
+			$person->assignVars($data[$row]);
+			$sName2 = FormatFullName('', $person->getVar('lastname'), $person->getVar('firstname'), $person->getVar('address1'), $person->getVar('address2'), 1);
 
-			if (strlen($data[$row]['address1']) > 0)
-				$sAddress2 = $data[$row]['address1'];
+			if (strlen($person->getVar('address1')) > 0)
+				$sAddress2 = $person->getVar('address1');
 			else
-				$sAddress2 = $data[$row]['address2'];
+				$sAddress2 = $person->getVar('address2');
 
-			$sEnvelope2 = $data[$row]['envelope'];
+			$sEnvelope2 = $person->getVar('envelope');
 			$Column2Size--;
 		} else {
 			$sName2 = "";
@@ -225,5 +230,4 @@ if ($iPDFOutputType == 1)
 	$pdf->Output("EnvelopeList-" . date("Ymd-Gis") . ".pdf", true);
 else
 	$pdf->Output();
-	
 ?>

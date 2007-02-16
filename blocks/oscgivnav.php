@@ -67,9 +67,17 @@ function oscgivnav_show($options)
 <a class=navbar href='" . XOOPS_URL . "/modules/oscgiving/index.php" . "'>" .  _oscgiv_nav_donationenvelopes . "</a>
 </small></td><td>|</td><td align=center><small>
 
-<a href='" . XOOPS_URL . "/modules/oscgiving/donationbatchentry.php'> " . _oscgiv_nav_donationbatchentry . "</a>
+<a href='" . XOOPS_URL . "/modules/oscgiving/DonationEditor.php'> " . _oscgiv_nav_donationbatchentry . "</a>
 </small></td>
 <td>|</td><td align=center><small><a href='" . XOOPS_URL . "/modules/oscmembership/reports.php'>" . _oscmem_nav_reports . "</a></small></td>
+<!--
+<td>|</td>
+<td align=center><small>
+
+<a href='" . XOOPS_URL . "/modules/oscgiving/x.php'> " . _oscgiv_nav_donationmanagement. "</a>
+</small>
+</td>
+-->
 </tr>
 </table>
 ";

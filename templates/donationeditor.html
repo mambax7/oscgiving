@@ -1,0 +1,111 @@
+<h2 class=comTitle><{$title}></h2>
+<form name="DonationForm" method="post" action="DonationEditor.php?PersonID=<{$personid}>&DonationID=<{$donationid}>&Batch=1">
+<input type="hidden" name="postaction">
+<table align="center" cellpadding="3" border=1>
+	<tr>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaultdate}></b><br>
+			<{$defaultdate_dt}>
+		</td>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaultfund}></b><br>
+			<select name="DefaultFundID">
+			<option value="0"><{$oscgive_none}></option>
+		        <{foreach item=fund from=$funds}>
+				<option value="<{$fund->getVar('fund_id')}>" 
+				<{if $fund->getVar('fund_id')==$iDefaultFundID }>
+					selected
+				<{/if}>
+				><{$fund->getVar('fund_Name')}>
+				</option>
+			<{/foreach}>
+			</select>
+		</td>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaulttype}></b><br>
+			<select name="DefaultPaymentType">
+			<option <{if $defaultpaymenttype==1}>selected <{/if}>
+			value="1"><{$oscgiv_cash}></optionf
+			<option <{if $defaultpaymenttype==2}>selected <{/if}> value="2"><{$oscgiv_check}></option>
+			<option <{if $defaultpaymenttype==3}></{if>
+			selected <{/if}> value="3"><{$oscgiv_credit}></option>
+			</select>
+     		</td>
+		<td align="right" valign="bottom">
+			<br><input type="submit" class="icButton" value="<{$oscgiv_applydefaults}>" Name="applydefaults" id="applydefaults" onclick="DonationForm.postaction.value='applydefaults';">
+		</td>
+	</tr>
+</table>
+<br>
+<table class="outer" align="center" width="40%">
+	<tr>
+	<th colspan=5>			
+					
+	<input type="submit" class="icButton" value="<{$oscgiv_lookup}>" Name="LookupDonor" id="LookupDonor" onclick="DonationForm.postaction.value='lookup';">
+	&nbsp;&nbsp;<input type="reset" value="<{$oscgiv_clear}>">
+	&nbsp;&nbsp;<input type="submit" value="<{$oscgiv_submitdonations}>" Name="submitdonations" id="submitdonations" onclick="DonationForm.postaction.value='submit';">
+	</th>
+	</tr>
+	<tr>
+	<th>
+		<{$oscgiv_donationdate}>
+	</th>
+	<th>
+		<{$oscgiv_envelopenumorlastname}>
+	</th>
+	<th>    <{$oscgiv_fund}>
+	</th>
+	<th><{$oscgiv_amount}></th>
+	<th><{$oscgiv_paymenttype}></th>
+	</tr>
+	<{foreach item=donation from=$donations}>
+		<tr class="even">
+		<td>
+		<input type='text' name='donationdate<{$donation->getVar('iteration')}>' id='donationdate<{$donation->getVar('iteration')}>' size='10' maxlength='25' value='<{$sdefaultdate}>' />
+		<input type='reset' value=' ... ' onclick='return showCalendar("donationdate<{$donation->getVar('iteration')}>");'>				
+		</td>
+		<td nowrap>
+		<input type='text' name='donationenvorname<{$donation->getVar('iteration')}>' id='donationenvorname<{$donation->getVar('iteration')}>' size='30' maxlength="50" value='<{$donation->getVar('searchvalue')}>'>
+		<br>
+		<{if $donation->getVar('displayaddress')!="" }>
+		<hr>
+		<{$donation->getVar('displayaddress')}>
+		<{/if}>
+		</td>
+		<td>
+			<select name="fund<{$donation->getVar('iteration')}>" id="fund<{$donation->getVar('iteration')}>">
+				<option value="0"><{$oscgiv_none}></option>
+				<{foreach item=fund from=$funds}>
+					<option value="<{$fund->getVar('fund_id')}>"  
+					<{if $donation->getVar('dna_fun_id')==$fund->getVar('fund_id')}>
+						selected
+					<{/if}>
+					>
+					<{$fund->getVar('fund_Name')}>
+					</option>
+				<{/foreach}>
+			</select>
+
+		</td>
+		<td>
+		<input type='text' name='donationamount<{$donation->getVar('iteration')}>' id='donation<{$donation->getVar('iteration')}>' size='8' maxlength="8" value='<{$donation->getVar('dna_Amount')}>'>
+		
+		</td>
+		<TD>
+		<select name="paymenttype<{$donation->getVar('iteration')}>">
+	<option <{if $donation->getVar('don_PaymentType')==1}>selected <{/if}>
+	value="1"><{$oscgiv_cash}></option>
+	<option <{if $donation->getVar('don_PaymentType')==2}>selected <{/if}> value="2"><{$oscgiv_check}></option>
+	<option <{if $donation->getVar('don_PaymentType')==3}>
+	selected <{/if}> value="3"><{$oscgiv_credit}></option>
+	</select>
+
+		</TD>
+		</tr>
+	<{/foreach}>
+	
+	
+	</tr>
+</table>
+
+</form>

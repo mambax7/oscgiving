@@ -17,6 +17,8 @@ $modversion['tables'][2] = "oscgiving_donations";
 // Templates
 $modversion['templates'][0]['file'] = 'donationenvelope.html';
 $modversion['templates'][0]['description'] = 'Donation Envelopes';
+$modversion['templates'][1]['file'] = 'donationeditor.html';
+$modversion['templates'][1]['description'] = 'Donation Editor';
 
 $modversion['blocks'][1]['file'] = "oscgivnav.php";
 $modversion['blocks'][1]['name'] = 'OSC Giving Navigation';

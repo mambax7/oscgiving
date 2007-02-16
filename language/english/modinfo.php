@@ -41,4 +41,40 @@ define("_oscgiv_envelopesassigned","Envelopes Assigned:");
 
 define("_oscgiv_envelopassignconfirm","Proceed with envelope assignment?");
 
+define("_oscgiv_donationbatchentry_title","Donation Batch Entry");
+
+define("_oscgiv_batchentrymode","Batch Entry Mode");
+define("_oscgiv_defaultdate","Default Date");
+define("_oscgiv_defaultfund","Default Fund");
+define("_oscgive_none","None");
+define("_oscgiv_defaulttype","Default Payment Type");
+define("_oscgiv_cash","Cash");
+define("_oscgiv_check","Check");
+define("_oscgiv_credit","Credit");
+define("_oscgiv_clear","Clear");
+define("_oscgiv_receiptnumber","Receipt Number");
+define("_oscgiv_delete","Delete");
+define("_oscgiv_donationdate","Donation Date");
+define("_oscgiv_dateerror","Date Error");
+define("_oscgiv_envelopenumorlastname","Envelope Number or Last Name");
+define("_oscgiv_search","Search");
+define("_oscgiv_lookup","Lookup");
+define("_oscgiv_submitdonations","Submit Donations");
+define("_oscgiv_selecteddonor","Selected Donor");
+define("_oscgiv_nopersonwithlastnameassignedtoenvelope","No Person Assigned to Envelope");
+
+define("_oscgiv_envelopnumber","Envelope Number");
+define("_oscgiv_envelopeerror","Envelope Error");
+define("_oscgiv_invalidenvelopenumber","Invalid Envelope Number");
+
+define("_oscgiv_paymenttype","Payment Type");
+define("_oscgiv_addressinfo","Address Info");
+
+define("_oscgiv_fund","Fund");
+define("_oscgiv_amount","Amount");
+
+define("_oscgiv_applydefaults","Apply Defaults");
+
+define("_oscgiv_nav_donationmanagement","Donation Management");
+define("_oscgiv_nonamefound","No Match");
 ?>

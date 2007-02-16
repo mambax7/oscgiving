@@ -38,6 +38,8 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     exit(_oscgiv_access_denied);
 }
 
+$GLOBALS['xoopsOption']['template_main'] ="donationeditor.html";
+
 include(XOOPS_ROOT_PATH."/header.php");
 
 

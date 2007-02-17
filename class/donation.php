@@ -28,7 +28,7 @@ class  Donation extends XoopsObject {
     function Donation()
     {
         $this->db = &Database::getInstance();
-        $this->table = $this->db->prefix("oscgiving_donationamounts");
+        $this->table = $this->db->prefix("oscgiving_donations");
 	$this->initVar('don_id',XOBJ_DTYPE_INT);
 	$this->initVar('personid',XOBJ_DTYPE_INT);
 	$this->initVar('don_PaymentType',XOBJ_DTYPE_INT);
@@ -115,14 +115,64 @@ class oscGivingDonationHandler extends XoopsObjectHandler
     
     }
     
-    function &submitDonation($donation)
+    function &submitDonation(&$donation)
     {
-    	
-    
+	$sql = "INSERT into " . $donation->table
+		. "(don_DonorID, don_PaymentType, don_CheckNumber,don_Date,don_Envelope)";
+	
+	$sql .= "values(" . $donation->getVar("personid")
+	. "," . 
+	$donation->getVar('don_PaymentType')
+	. ",";
+	if(is_numeric($donation->getVar('don_CheckNumber')))
+		$sql .= $donation->getVar('don_CheckNumber');
+	else 
+		$sql.="0";
+		
+	$sql .=  "," .
+	$this->db->quoteString($donation->getVar('don_Date'))
+	. "," .
+	$donation->getVar('don_Envelope') . ");";
+
+	
+	if (!$result = $this->db->query($sql)) 
+	{
+		return false;
+	}
+	else
+	{
+		$donationid=$this->db->getInsertId();
+	}
+	
+	$sql = "  insert into " . $this->db->prefix("oscgiving_donationamounts");
+	$sql .= " (don_id,dna_Amount,dna_fun_ID) values(" . $donationid . ",";
+	if(is_numeric($donation->getVar('dna_Amount')))
+	{
+		$sql .= $donation->getVar('dna_Amount') . "," ;
+	}
+	else
+	{
+		$sql .= "0,";
+	} 
+	$sql .= $donation->getVar('dna_fun_id') . ")";
+
+	if (!$result = $this->db->query($sql)) 
+	{
+		$sql="delete from " . $donation->table . "where don_id=" . $donationid;
+		!$result = $this->db->query($sql);
+		return false;
+	}
+	else
+	{
+		
+		return $donationid;
+	}
+	    
     }
     
     function &getDonations($donation)
     {
+    	return true;
     
     }
 

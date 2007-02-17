@@ -97,10 +97,29 @@ $donations[3]=$donation;
 			$donation->assignVar('searchvalue',$_POST['donationenvorname' . $i]);
 		}
 			
-			
-	//	if(isset($_POST['don_Envelope']))
-	//	$donation[0]->assignVar('don_Envelope',$_POST['donationenvorname']);
-	
+		if(isset($_POST['checknumber' . $i]) && is_numeric($_POST['checknumber' . $i]))
+		{
+			$donation->assignVar('don_CheckNumber',$_POST['checknumber' . $i]);
+		}
+		else
+		{
+			$donation->assignVar('don_CheckNumber',"");
+		}
+		
+		if(isset($_POST['personid' . $i]))
+		{
+			$donation->assignVar('personid',$_POST['personid' . $i]);
+		}
+		
+		if(isset($_POST['envelope' . $i]))
+		{
+			$donation->assignVar('don_Envelope',$_POST['envelope' . $i]);
+		}
+		
+		if(isset($_POST['display' . $i]))
+		{
+			$donation->assignVar('displayaddress',$_POST['display' . $i]);
+		}
 		
 	}
 	
@@ -144,6 +163,9 @@ switch ($smode)
 						$displayline.=" " . $lookupval->getVar('city') . ", " . $lookupval->getVar('state');
 						
 						$donation->assignVar('displayaddress',$displayline);
+						$donation->assignVar('personid',$lookupval->getVar('id'));
+						
+						$donation->assignVar('don_Envelope',$lookupval->getVar('envelope'));
 					}
 				}
 			}
@@ -163,6 +185,7 @@ switch ($smode)
 			$donation->assignVar('don_Date',$sdefaultdate);
 			$donation->assignVar('dna_fun_id',$iDefaultFundID);
 			$donation->assignVar('don_PaymentType',$defaultpaymenttype);
+			
 			$donations[$i]=$donation;
 		
 			$i++;		
@@ -173,18 +196,24 @@ switch ($smode)
 	case "submit":
 		foreach($donations as $donation)
 		{
-			$donation_handler->submitDonation($donation);
+			if($donation->getVar('personid')>0)
+			{
+				$donationid=$donation_handler->submitDonation($donation);
 			
-			//recreate donation
-			$i=$donation->getVar('iteration');
-			$donation=$donation_handler->create(false);
-			$donation->assignVar('iteration',$i);
-			//apply defaults
-			$donation->assignVar('don_Date',$sdefaultdate);
-			$donation->assignVar('dna_fun_id',$iDefaultFundID);
-			$donation->assignVar('don_PaymentType',$defaultpaymenttype);
-
-			$donations[$i]=$donation;
+				if($donationid>0)
+				{	
+					//recreate donation for display
+					$i=$donation->getVar('iteration');
+					$donation=$donation_handler->create(false);
+					$donation->assignVar('iteration',$i);
+					//apply defaults
+					$donation->assignVar('don_Date',$sdefaultdate);
+					$donation->assignVar('dna_fun_id',$iDefaultFundID);
+					$donation->assignVar('don_PaymentType',$defaultpaymenttype);
+		
+					$donations[$i]=$donation;
+				}
+			}
 
 		}
 	
@@ -230,7 +259,6 @@ $xoopsTpl->assign('donor_amount',$donor_amount);
 $xoopsTpl->assign('title',_oscgiv_donationbatchentry_title);
 $xoopsTpl->assign('personid',1);
 $xoopsTpl->assign('donationid',1);
-$xoopsTpl->assign('batchMode',$batchMode);
 $xoopsTpl->assign('defaultdate_dt',$defaultdate_dt->render());
 $xoopsTpl->assign('sdefaultdate',$sdefaultdate);
 $xoopsTpl->assign('funds',$funds);
@@ -243,7 +271,6 @@ $xoopsTpl->assign('oscgiv_defaultfund',_oscgiv_defaultfund);
 $xoopsTpl->assign('oscgive_none',_oscgive_none);
 $xoopsTpl->assign('oscgiv_defaulttype',_oscgiv_defaulttype);
 $xoopsTpl->assign('oscgiv_paymenttype',_oscgiv_paymenttype);
-$xoopsTpl->assign('defaultpaymenttype',$defaultpaymenttype);
 $xoopsTpl->assign('oscgiv_cash',_oscgiv_cash);
 $xoopsTpl->assign('oscgiv_check',_oscgiv_check);
 $xoopsTpl->assign('oscgiv_credit',_oscgiv_credit);
@@ -252,8 +279,6 @@ $xoopsTpl->assign('oscgiv_clear',_oscgiv_clear);
 $xoopsTpl->assign('oscgiv_delete',_oscgiv_delete);
 
 $xoopsTpl->assign('oscgiv_receiptnumber',_oscgiv_receiptnumber);
-
-$xoopsTpl->assign('iDefaultFundID',$iDefaultFundID);
 
 $xoopsTpl->assign('oscgiv_donationdate',_oscgiv_donationdate);
 
@@ -267,7 +292,7 @@ $xoopsTpl->assign('oscgiv_selecteddonor',_oscgiv_selecteddonor);
 $xoopsTpl->assign('oscgiv_applydefaults',_oscgiv_applydefaults);
 $xoopsTpl->assign('oscgiv_fund',_oscgiv_fund);
 $xoopsTpl->assign('oscgiv_amount',_oscgiv_amount);
-
+$xoopsTpl->assign('oscgiv_checknumber',_oscgiv_checknumber);
 
 include(XOOPS_ROOT_PATH."/footer.php");
 

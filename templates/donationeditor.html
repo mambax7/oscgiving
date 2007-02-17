@@ -39,7 +39,7 @@
 <br>
 <table class="outer" align="center" width="40%">
 	<tr>
-	<th colspan=5>			
+	<th colspan=6>			
 					
 	<input type="submit" class="icButton" value="<{$oscgiv_lookup}>" Name="LookupDonor" id="LookupDonor" onclick="DonationForm.postaction.value='lookup';">
 	&nbsp;&nbsp;<input type="reset" value="<{$oscgiv_clear}>">
@@ -57,6 +57,7 @@
 	</th>
 	<th><{$oscgiv_amount}></th>
 	<th><{$oscgiv_paymenttype}></th>
+	<th width="15"><{$oscgiv_checknumber}></th>
 	</tr>
 	<{foreach item=donation from=$donations}>
 		<tr class="even">
@@ -99,9 +100,15 @@
 	<option <{if $donation->getVar('don_PaymentType')==3}>
 	selected <{/if}> value="3"><{$oscgiv_credit}></option>
 	</select>
-
-		</TD>
-		</tr>
+	</TD>
+	<td><input size="5" type="text" name="checknumber<{$donation->getVar('iteration')}>" id="checknumber<{$donation->getVar('iteration')}>" value="<{$donation->getVar("don_CheckNumber")}>">
+	
+	<input type="hidden" name="personid<{$donation->getVar('iteration')}>" id="personid<{$donation->getVar('iteration')}>" value="<{$donation->getVar('personid')}>">
+	<input type="hidden" name="envelope<{$donation->getVar('iteration')}>" id="envelope<{$donation->getVar('iteration')}>" value="<{$donation->getVar('don_Envelope')}>">
+	
+	<input type="hidden" name="display<{$donation->getVar('iteration')}>" id="display<{$donation->getVar('iteration')}>" value="<{$donation->getVar('displayaddress')}>">
+	</td>
+	</tr>
 	<{/foreach}>
 	
 	

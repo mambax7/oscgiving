@@ -24,6 +24,7 @@
 class  Donation extends XoopsObject {
     var $db;
     var $table;
+    var $searchpersons;
 
     function Donation()
     {
@@ -40,7 +41,8 @@ class  Donation extends XoopsObject {
 	
 	$this->initVar('personlastname',XOBJ_DTYPE_TXTBOX);
 	$this->initVar('personfirstname',XOBJ_DTYPE_TXTBOX);
-	$this->initVar('displayaddress',XOBJ_DTYPE_TXTBOX);
+	$this->searchperson=array();
+//	$this->initVar('searchpersons',XOBJ_DTYPE_TXTBOX);
 	$this->initVar('searchvalue',XOBJ_DTYPE_TXTBOX);
 	$this->initVar('iteration',XOBJ_DTYPE_TXTBOX);
 	
@@ -68,7 +70,8 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 	$giv_family_handler = &xoops_getmodulehandler('family', 'oscmembership');
 	$giv_person_handler = &xoops_getmodulehandler('person', 'oscmembership');
     	$person=$giv_person_handler->create(false);
-    
+	
+	$persons=array();
     	//determine if we have a string or number
 	if(is_numeric($lookupvalue))
 	{
@@ -88,6 +91,7 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 				$person->assignVar('zip',$family->getVar('zip'));
 			}
 		}
+		$persons[0]=$person;
 	}
 	else
 	{
@@ -95,24 +99,9 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 		$searcharray=array();
 		$searcharray[0]=$lookupvalue;
 		$persons=$giv_person_handler->search3($searcharray,"",true);
-
-		if(count($persons)>1)
-		{
-			$person=$giv_person_handler->create(false);
-			$person->assignVar('lastname',_oscgiv_nonamefound);
-		}
-		else
-		{
-			$person=$persons[0];
-		}
 	}
 	
-	//Match against names
-	
-	//Match against envelopes    
-    
-	return $person;
-    
+	return $persons;
     }
     
     function &submitDonation(&$donation)
@@ -131,8 +120,7 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 		
 	$sql .=  "," .
 	$this->db->quoteString($donation->getVar('don_Date'))
-	. "," .
-	$donation->getVar('don_Envelope') . ");";
+	. ",0);";
 
 	
 	if (!$result = $this->db->query($sql)) 

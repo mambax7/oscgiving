@@ -66,12 +66,10 @@
 		<input type='reset' value=' ... ' onclick='return showCalendar("donationdate<{$donation->getVar('iteration')}>");'>				
 		</td>
 		<td nowrap>
-		<input type='text' name='donationenvorname<{$donation->getVar('iteration')}>' id='donationenvorname<{$donation->getVar('iteration')}>' size='30' maxlength="50" value='<{$donation->getVar('searchvalue')}>'>
-		<br>
-		<{if $donation->getVar('displayaddress')!="" }>
-		<hr>
-		<{$donation->getVar('displayaddress')}>
-		<{/if}>
+		<input type='text' name='donationenvorname<{$donation->getVar('iteration')}>'
+		 id='donationenvorname<{$donation->getVar('iteration')}>' size='30' maxlength="50" value='<{$donation->getVar('searchvalue')}>'>
+		 <{$donation->getVar('searchpersons')}>
+		 <br>
 		</td>
 		<td>
 			<select name="fund<{$donation->getVar('iteration')}>" id="fund<{$donation->getVar('iteration')}>">
@@ -106,7 +104,6 @@
 	<input type="hidden" name="personid<{$donation->getVar('iteration')}>" id="personid<{$donation->getVar('iteration')}>" value="<{$donation->getVar('personid')}>">
 	<input type="hidden" name="envelope<{$donation->getVar('iteration')}>" id="envelope<{$donation->getVar('iteration')}>" value="<{$donation->getVar('don_Envelope')}>">
 	
-	<input type="hidden" name="display<{$donation->getVar('iteration')}>" id="display<{$donation->getVar('iteration')}>" value="<{$donation->getVar('displayaddress')}>">
 	</td>
 	</tr>
 	<{/foreach}>

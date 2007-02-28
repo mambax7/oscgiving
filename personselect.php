@@ -1,6 +1,6 @@
 <?php
 include("../../mainfile.php");
-$xoopsOption['template_main'] = 'cs_index.html';
+//$xoopsOption['template_main'] = 'cs_index.html';
 
 //redirect
 if (!$xoopsUser)

@@ -37,6 +37,9 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin(
     exit(_oscgiv_access_denied);
 }
 
+
+include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
+
 include_once(XOOPS_ROOT_PATH . "/class/xoopsformloader.php");
 include(XOOPS_ROOT_PATH."/header.php");
 include(XOOPS_ROOT_PATH."/modules/" . $xoopsModule->getVar('dirname') . "/class/oscgivradio.php");
@@ -50,6 +53,13 @@ else
 
 if (isset($_POST['DefaultFundID'])) $iDefaultFundID=$_POST['DefaultFundID'];
 if (isset($_POST['DefaultPaymentType'])) $defaultpaymenttype=$_POST['DefaultPaymentType'];
+
+if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
+
+if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+{
+	exit(_oscgiv_accessdenied);
+}
 
 
 $donations=array();

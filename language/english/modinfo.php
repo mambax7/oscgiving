@@ -79,4 +79,6 @@ define("_oscgiv_applydefaults","Apply Defaults");
 define("_oscgiv_nav_donationmanagement","Donation Management");
 define("_oscgiv_nonamefound","No Match");
 define("_oscgiv_checknumber","Check Number");
+define("_oscgiv_reporttitle","OSCGiv Donation Reports");
+define("_oscgiv_submit","Submit");
 ?>

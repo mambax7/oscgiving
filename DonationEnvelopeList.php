@@ -37,6 +37,12 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule))  {
     exit("Access Denied");
 }
 
+if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
+
+if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+{
+	exit(_oscgiv_accessdenied);
+}
 
 // this works well for letter size pages
 $maxColumnLength = 36;

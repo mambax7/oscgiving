@@ -13,12 +13,16 @@ $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][0] = "oscgiving_donationamounts";
 $modversion['tables'][1] = "oscgiving_donationfunds";
 $modversion['tables'][2] = "oscgiving_donations";
+$modversion['tables'][3] = "oscgiving_settings";
 
 // Templates
 $modversion['templates'][0]['file'] = 'donationenvelope.html';
 $modversion['templates'][0]['description'] = 'Donation Envelopes';
 $modversion['templates'][1]['file'] = 'donationeditor.html';
 $modversion['templates'][1]['description'] = 'Donation Editor';
+$modversion['templates'][1]['file'] = 'oscgivreports.html';
+$modversion['templates'][1]['description'] = 'Donation Reports';
+
 
 $modversion['blocks'][1]['file'] = "oscgivnav.php";
 $modversion['blocks'][1]['name'] = 'OSC Giving Navigation';
@@ -37,33 +41,4 @@ $modversion['hasComments'] = 1;
 $modversion['comments']['pageName'] = 'index.php';
 $modversion['comments']['itemName'] = 'id';
 
-/*
-$i = 1;
-$modversion['sub'][$i]['name'] = _oscmembership_viewperson;
-$modversion['sub'][$i]['url'] = "index.php";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmembership_addperson;
-$modversion['sub'][$i]['url'] = "persondetailform.php?action=create";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmembership_addfamily;
-$modversion['sub'][$i]['url'] = "familydetailform.php?action=create";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmembership_viewfamily;
-$modversion['sub'][$i]['url'] = "familylistform.php";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmembership_viewgroup;
-$modversion['sub'][$i]['url'] = "groupselect.php";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmem_addgroup;
-$modversion['sub'][$i]['url'] = "groupdetailform.php?action=create";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmem_customfield;
-$modversion['sub'][$i]['url'] = "customfieldselectform.php";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmem_osclist_famrole_TITLE;
-$modversion['sub'][$i]['url'] = "admin/osclistselect_smarty.php?id=4";
-$i++;
-$modversion['sub'][$i]['name'] = _oscmem_view_cart;
-$modversion['sub'][$i]['url'] = "viewcart.php";
-*/
 ?>

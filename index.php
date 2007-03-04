@@ -8,13 +8,6 @@ if (!$xoopsUser)
     redirect_header(XOOPS_URL."/user.php", 3, _AD_NORIGHT);
 }
 
-$user=$xoopsUser;
-$perm="View Permissions";
-$userId = ($user) ? $user->getVar('uid') : 0;
-//$permissionPull = $groupPermHandler->getItemIds($perm, $user->groups(), $module->getVar("mid"));
-
-
-
 include XOOPS_ROOT_PATH."/include/cp_functions.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 include_once XOOPS_ROOT_PATH . '/modules/oscmembership/class/person.php';
@@ -23,16 +16,12 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include
 
 include(XOOPS_ROOT_PATH."/header.php");
 
-/*
-		echo $xoopsUser->getGroups();
-		echo $module->getVar("mid");
-		
-		$perm=$groupPermHandler->getItemIds("oscmem_view",$xoopsUser->getGroups(),$module->getVar("mid"));
-*/
-
-
-if(hasPerm("oscgiving_view",$xoopsUser)) $ispermview=true;
 if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
+
+if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+{
+	exit(_oscgiv_accessdenied);
+}
 
 $giv_handler= &xoops_getmodulehandler('envelope', 'oscgiving');
 

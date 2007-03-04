@@ -158,9 +158,27 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 	    
     }
     
-    function &getDonations($donation)
+    function &getPersonswhoDonatebyYear($year)
     {
-    	return true;
+    
+	$giv_person_handler = &xoops_getmodulehandler('person', 'oscmembership');
+    	$person=$giv_person_handler->create(false);
+	
+	$persons=array();
+
+	$sql="select distinct d.don_DonorID, p.* from " . $this->db->prefix("xoops_oscmembership_person") . " p, " . $this->db->prefix("xoops_oscgiving_donations") . " d where id= don_DonorID and year(d.don_Date)=" . $year;
+	
+	$result=$this->db->query($sql);
+	
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+		$person->assignVars($row);
+		$persons[$i]=$person;
+		$i++;
+	}
+    
+    	return $persons;
     
     }
 

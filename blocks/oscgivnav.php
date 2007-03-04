@@ -35,33 +35,14 @@
 // * Output  : Returns the links content                                  *//
 // **************************************************************************//
 
-//include_once(XOOPS_ROOT_PATH . "/modules/churchsplash/class/formimage.php");
-
 // include the default language file for the admin interface
-
-
-
-/*
-if (file_exists(XOOPS_ROOT_PATH. "/modules/churchsplash/language/" . $xoopsConfig['language'] . "/modinfo.php")) {
-    include XOOPS_ROOT_PATH . "/modules/churchsplash/language/" . $xoopsConfig['language'] . "/modinfo.php";
-}
-elseif( file_exists(XOOPS_ROOT_PATH . "/modules/churchsplash/language/english/modinfo.php"))
-{
- include XOOPS_ROOT_PATH ."/modules/churchsplash/language/english/modinfo.php";
-
-}
-*/
-// include XOOPS_ROOT_PATH ."/modules/churchsplash/language/english/modinfo.php";
-
-//include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-//include_once XOOPS_ROOT_PATH."/class/xoopsform/tableform.php";
 
 
 
 function oscgivnav_show($options) 
 {
-	global $xoopsUser;
-	$content_block="
+global $xoopsUser;
+$content_block="
 <table class=navbar >
 <tr><TD align=center ><small>
 <a class=navbar href='" . XOOPS_URL . "/modules/oscgiving/index.php" . "'>" .  _oscgiv_nav_donationenvelopes . "</a>
@@ -69,15 +50,7 @@ function oscgivnav_show($options)
 
 <a href='" . XOOPS_URL . "/modules/oscgiving/DonationEditor.php'> " . _oscgiv_nav_donationbatchentry . "</a>
 </small></td>
-<td>|</td><td align=center><small><a href='" . XOOPS_URL . "/modules/oscmembership/reports.php'>" . _oscmem_nav_reports . "</a></small></td>
-<!--
-<td>|</td>
-<td align=center><small>
-
-<a href='" . XOOPS_URL . "/modules/oscgiving/x.php'> " . _oscgiv_nav_donationmanagement. "</a>
-</small>
-</td>
--->
+<td>|</td><td align=center><small><a href='" . XOOPS_URL . "/modules/oscgiving/reports.php'>" . _oscmem_nav_reports . "</a></small></td>
 </tr>
 </table>
 ";

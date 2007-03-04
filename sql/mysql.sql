@@ -28,6 +28,16 @@ CREATE TABLE `oscgiving_donations` (
   KEY `don_Date` (`don_Date`)
 ) ;
 
+--One Row Table
+CREATE TABLE `oscgiving_settings` (
+  `id` mediumint(9) unsigned NOT NULL ,
+  `letterendofyear` text default NULL,
+  PRIMARY KEY  (`id`),
+) ;
+
+
+# Setup for first letter
+INSERT INTO `oscgiving_settings` VALUES (1,'[date]\r\n\r\n[donorname]\r\n[donoraddress]\r\n\r\nDear [donorname],\r\n\r\nWe appreciate your financial support during the past year to [churchname].  The following is a statement of your donations during the past year.\r\n\r\nTotal sum of your donations received during the year [year]: [totaldonationamount]\r\n\r\nBelow are the details for your donations:\r\n\r\n[donationtable]\r\n\r\nSincerely,\r\n\r\n\r\nYourName\r\nTreasurer');
 
 
 # Sample data for member classifications

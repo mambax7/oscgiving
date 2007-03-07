@@ -166,7 +166,7 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 	
 	$persons=array();
 
-	$sql="select distinct d.don_DonorID, p.* from " . $this->db->prefix("xoops_oscmembership_person") . " p, " . $this->db->prefix("xoops_oscgiving_donations") . " d where id= don_DonorID and year(d.don_Date)=" . $year;
+	$sql="select distinct p.* from " . $this->db->prefix("oscmembership_person") . " p, " . $this->db->prefix("oscgiving_donations") . " d where id= don_DonorID and year(d.don_Date)=" . $year;
 	
 	$result=$this->db->query($sql);
 	
@@ -179,6 +179,52 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 	}
     
     	return $persons;
+    
+    }
+
+    function &getDonationsbypersonbyyear($personid, $lyear)
+    {
+    
+    	$donations=array();
+    	$donation=$this->create(False);
+   
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+on d.don_id = da.don_id
+where d.don_DonorID= " . $personid . "
+and year(d.don_Date)=" . $lyear;
+
+	$result=$this->db->query($sql);
+	
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+		$donation->assignVars($row);
+		$donations[$i]=$donation;
+		$i++;
+	}
+	
+	return $donations;
+    }
+
+    /* Returns in a collection the individual years where donations have been received */
+    function &getDonationyears()
+    {
+    
+    	$years=array();
+    	$donation=$this->create(False);
+
+	$sql="select year(don_Date)  from " . $donation->table . " group by year(don_Date) order by year(don_Date) desc";
+	
+	$result=$this->db->query($sql);
+	
+	$i=0;
+	while ($row=mysql_fetch_array($result))
+	{
+		$year=$row[0];
+		$years[$i]=$year;
+		$i++;
+	}
+    	return $years;
     
     }
 

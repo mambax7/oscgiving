@@ -79,6 +79,13 @@ define("_oscgiv_applydefaults","Apply Defaults");
 define("_oscgiv_nav_donationmanagement","Donation Management");
 define("_oscgiv_nonamefound","No Match");
 define("_oscgiv_checknumber","Check Number");
-define("_oscgiv_reporttitle","OSCGiv Donation Reports");
+define("_oscgiv_reporttitle","Donation Reports");
 define("_oscgiv_submit","Submit");
+
+define("_oscgiv_admin_givingsettings","Modify Giving Settings");
+define("_oscgiv_admin_permissions","Modify Permissions");
+define("_oscgiv_yearlydonationreport","Yearly Donation Reports");
+define("_oscgiv_fax","Fax");
+define("_oscgiv_phone","Telephone");
+define("_oscgiv_website","Website");
 ?>

@@ -25,4 +25,5 @@ define("_oscgiv_letterfields_fields","<ul><li>[donatorname]: Name of donator</li
 ate of Letter</li><li>[donationlist]: Inserts a list/table of donations made by the individual donator for the selected year.</li></ul>");
 
 define("_oscgiv_yearendletter_savesuccess","Changes to year end letter have been successfully saved.");
+
 ?>

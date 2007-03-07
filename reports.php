@@ -26,10 +26,14 @@ if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
 
 if(!hasPerm("oscmembership_view",$xoopsUser)) exit(_oscmem_access_denied);
 
+$donation_handler = &xoops_getmodulehandler('donation', 'oscgiving');
+
+$years=$donation_handler->getDonationyears();
 include(XOOPS_ROOT_PATH."/header.php");
 
 $xoopsTpl->assign('title',_oscgiv_reporttitle); 
-$xoopsTpl->assign('oscgiv_donationreport',_oscmem_directoryreport); 
+$xoopsTpl->assign('oscgiv_yearlydonationreport',_oscgiv_yearlydonationreport); 
+$xoopsTpl->assign('years',$years);
 /*
 $xoopsTpl->assign('OSCMEM_csvexport',_oscmem_csvexport);
 $xoopsTpl->assign('oscmem_csvimport',_oscmem_csvimport);

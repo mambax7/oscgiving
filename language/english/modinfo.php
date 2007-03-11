@@ -88,4 +88,7 @@ define("_oscgiv_yearlydonationreport","Yearly Donation Reports");
 define("_oscgiv_fax","Fax");
 define("_oscgiv_phone","Telephone");
 define("_oscgiv_website","Website");
+define("_oscgiv_donationreport","Donation Report");
+define("_oscgiv_donationreports_TITLE","Donation Reports");
+define("_oscgiv_donationdates","Donation Dates");
 ?>

@@ -16,13 +16,17 @@ define("_oscgiv_permissions_modify_desc","Permission to modify and create donati
 define("_oscgiv_permissions_admin","Admininistrative Permissions");
 define("_oscgiv_permissions_admin_desc","Administrative Permissions for donations");
 
-define("_oscgiv_yearenddonationletter_text","Donation Year End Letter Text");
+define("_oscgiv_yearenddonationletter_text","Donation Year End Letter Text<br><small>Only PNG Image formats are supported.</small>");
 define("_oscgiv_settings_title","OSCGiving Settings");
 
 define("_oscgiv_letterfields","Custom Fields for Year End Letter");
 define("_oscgiv_letterfields_instructions","Use the following fields to custmize the year end donation letter.");
 define("_oscgiv_letterfields_fields","<ul><li>[donatorname]: Name of donator</li><li>[date]: D
-ate of Letter</li><li>[donationlist]: Inserts a list/table of donations made by the individual donator for the selected year.</li></ul>");
+ate of Letter</li><li>[donationtable]: Inserts a list/table of donations made by the individual donator for the selected year.</li>
+<li>[donoraddress]: Address of donor</li>
+<li>[churchname]: Name of church.  Pulled from OSCMembership settings.</li>
+<li>[year]: Year select for donation report.</li>
+<li>[totaldonationamount]: Total donation amount for selected year</li></ul>");
 
 define("_oscgiv_yearendletter_savesuccess","Changes to year end letter have been successfully saved.");
 

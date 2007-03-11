@@ -227,6 +227,46 @@ and year(d.don_Date)=" . $lyear;
     	return $years;
     
     }
+    
+    function &getDonationdates()
+    {
+    	$dates=array();
+    	$donation=$this->create(False);
+
+	$sql="select don_Date  from " . $donation->table . " group by don_Date order by don_Date desc";
+	
+	$result=$this->db->query($sql);
+	$i=0;
+	while ($row=mysql_fetch_array($result))
+	{
+		$donationdate=$row[0];
+		$dates[$i]=$donationdate;
+		$i++;
+	}
+    	return $dates;
+    
+    }
+    
+    function &getDonationsbydate($thisdate)
+    {
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+on d.don_id = da.don_id
+where d.don_Date='" . $thisdate . "'";
+
+    	$donations=array();
+    	$donation=$this->create(False);
+
+	$result=$this->db->query($sql);
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+		$donation->assignVars($row);
+		$donations[$i]=$donation;
+		$i++;
+	}
+
+	return $donations;
+    }
 
 
 }

@@ -917,12 +917,14 @@ function Image($file,$x,$y,$w,$h=0,$type='',$link='')
 		$type=strtolower($type);
 		$mqr=get_magic_quotes_runtime();
 		set_magic_quotes_runtime(0);
+		/*
 		if($type=='jpg' or $type=='jpeg')
 			$info=$this->_parsejpg($file);
 		elseif($type=='png')
 			$info=$this->_parsepng($file);
 		else
 			$this->Error('Unsupported image file type: '.$type);
+		*/
 		set_magic_quotes_runtime($mqr);
 		$info['i']=count($this->images)+1;
 		$this->images[$file]=$info;

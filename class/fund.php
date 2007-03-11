@@ -33,6 +33,7 @@ class  Fund extends XoopsObject {
 	$this->initVar('fund_Active',XOBJ_DTYPE_INT);
 	$this->initVar('fund_Name',XOBJ_DTYPE_TXTBOX);
 	$this->initVar('fund_Description',XOBJ_DTYPE_TXTBOX);
+	$this->initVar('dna_Amount',XOBJ_DTYPE_TXTBOX);
     }
 
 }    
@@ -69,6 +70,27 @@ class oscGivingFundHandler extends XoopsObjectHandler
 		
 		$i++;
 		
+	}
+
+	return $funds;
+    }
+
+    function &getDonationsbydatebyfund($thisdate)
+    {
+	$sql="select df.fund_id, df.fund_Active, df.fund_Name, df.fund_Description, da.dna_Amount  from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+on d.don_id = da.don_id join " . $this->db->prefix("oscgiving_donationfunds") . " df on da.dna_fun_ID = df.fund_id 
+where d.don_Date=" . $this->db->quoteString($thisdate) . " group by dna_fun_ID";
+
+	$funds=array();
+	$fund=$this->create(False);
+
+	$result=$this->db->query($sql);
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+		$fund->assignVars($row);
+		$funds[$i]=$fund;
+		$i++;
 	}
 
 	return $funds;

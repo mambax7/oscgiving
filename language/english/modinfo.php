@@ -91,4 +91,8 @@ define("_oscgiv_website","Website");
 define("_oscgiv_donationreport","Donation Report");
 define("_oscgiv_donationreports_TITLE","Donation Reports");
 define("_oscgiv_donationdates","Donation Dates");
+
+define("_oscgiv_grandtotal","Grand Total");
+define("_oscgiv_total","Total");
+define("_oscgiv_totalbyfundfor","Total by Fund For");
 ?>

@@ -252,8 +252,8 @@ if($op=="create")
 
 	echo "<br><br><center>
 	<img src=\"" . XOOPS_URL . "/modules/" . $xoopsModule->dirname() . "/funds1day.php?date=$sdate\"></center>";
-		//$iYear = substr($sDate, 0, 4);
-		//echo "<br><br><center><img src=\"Graphs/donByMonth.php?year=$iYear\"></center>";
+	$iYear = date("Y",$idate);
+	echo "<br><br><center><img src=\"" . XOOPS_URL . "/modules/". $xoopsModule->dirname() . "/donByMonth.php?year=$iYear\"></center>";
 	
 	
 //	LoadLib_JPGraph(pie,pie3d);

@@ -267,6 +267,27 @@ where d.don_Date='" . $thisdate . "'";
 
 	return $donations;
     }
+    
+    function &getDonationbyYearMonth($year)
+    {
+
+	$sql= "SELECT date_format(don_Date, '%m') as month, sum(dna_Amount) as Total, date_format(don_Date, '%Y') as year, date_format(don_Date, '%b %Y') as monthyear FROM " . $this->db->prefix("oscgiving_donations") . " d LEFT JOIN " . $this->db->prefix("oscgiving_donationamounts") . " da  ON d.don_id = da.don_id GROUP BY monthyear HAVING year = '" . $year . "'ORDER BY month ASC"  ;
+
+	$donationyear=array();
+	$result=$this->db->query($sql);
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+		$donationyear[$i]['month']=$row['month'];
+		$donationyear[$i]['Total']=$row['Total'];
+		$donationyear[$i]['year']=$row['year'];
+		$donationyear[$i]['monthyear']=$row['monthyear'];
+		$i++;
+	}	   
+	
+	return $donationyear; 
+    
+    }
 
 
 }

@@ -87,10 +87,10 @@ define("_oscgiv_admin_permissions","修改权限");
 define("_oscgiv_yearlydonationreport","年度捐赠报告");
 define("_oscgiv_fax","传真");
 define("_oscgiv_phone","电话");
-define("_oscgiv_website","Website");
-define("_oscgiv_donationreport","Donation Report");
-define("_oscgiv_donationreports_TITLE","Donation Reports");
-define("_oscgiv_donationdates","Donation Dates");
+define("_oscgiv_website","网站");
+define("_oscgiv_donationreport","捐赠报告");
+define("_oscgiv_donationreports_TITLE","捐赠报告");
+define("_oscgiv_donationdates","捐赠日期");
 
 define("_oscgiv_grandtotal","Grand Total");
 define("_oscgiv_total","总计");

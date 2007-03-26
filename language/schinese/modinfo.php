@@ -5,18 +5,18 @@ define("_oscgiv_MOD_NAME","OSC Giving Module");
 define("_oscgiv_MOD_DESC","Xoops OSC Module for Membership Giving.");
 define("_oscgiv_ADMENU0","OSC Giving Administation");
 //Field names
-//define("_oscdir_userfile","Church Picture");
+//define("_oscdir_userfile","教堂照片");
 
-define("_oscgiv_save","Save");
-define("_oscgiv_select","Select");
-define("_oscgiv_create","Create");
+define("_oscgiv_save","保存");
+define("_oscgiv_select","选择");
+define("_oscgiv_create","创建");
 
-define("_oscgiv_view","View");
+define("_oscgiv_view","视图");
 
 define("_oscgiv_defaultcountry_value",22);
 
 define("_oscgiv_defaultcountry_text"," &nbsp;&nbsp;(Default Country is USA)");
-define("_oscgiv_accessdenied","Access Denied");
+define("_oscgiv_accessdenied","访问被拒绝");
 define("_oscgiv_assignedenvelopes","Assigned Envelopes");
 define("_oscgiv_activeenvelopes","Active Envelopes within last two years");
 define("_oscgiv_highestenvelopenumber","Highest Envelope Number");
@@ -44,55 +44,55 @@ define("_oscgiv_envelopassignconfirm","Proceed with envelope assignment?");
 define("_oscgiv_donationbatchentry_title","Donation Batch Entry");
 
 define("_oscgiv_batchentrymode","Batch Entry Mode");
-define("_oscgiv_defaultdate","Default Date");
+define("_oscgiv_defaultdate","默认日期");
 define("_oscgiv_defaultfund","Default Fund");
 define("_oscgiv_none","None");
-define("_oscgiv_defaulttype","Default Payment Type");
+define("_oscgiv_defaulttype","默认的支付类型");
 define("_oscgiv_nonte","None");
-define("_oscgiv_cash","Cash");
-define("_oscgiv_check","Check");
-define("_oscgiv_credit","Credit");
-define("_oscgiv_clear","Clear");
+define("_oscgiv_cash","现金");
+define("_oscgiv_check","检查");
+define("_oscgiv_credit","信用");
+define("_oscgiv_clear","清除");
 define("_oscgiv_receiptnumber","Receipt Number");
-define("_oscgiv_delete","Delete");
-define("_oscgiv_donationdate","Donation Date");
-define("_oscgiv_dateerror","Date Error");
+define("_oscgiv_delete","删除");
+define("_oscgiv_donationdate","捐赠日期");
+define("_oscgiv_dateerror","日期错误");
 define("_oscgiv_envelopenumorlastname","Envelope Number or Last Name");
-define("_oscgiv_search","Search");
-define("_oscgiv_lookup","Lookup");
-define("_oscgiv_submitdonations","Submit Donations");
-define("_oscgiv_selecteddonor","Selected Donor");
+define("_oscgiv_search","搜索");
+define("_oscgiv_lookup","查找");
+define("_oscgiv_submitdonations","提交捐赠");
+define("_oscgiv_selecteddonor","选择的捐赠人");
 define("_oscgiv_nopersonwithlastnameassignedtoenvelope","No Person Assigned to Envelope");
 
 define("_oscgiv_envelopnumber","Envelope Number");
 define("_oscgiv_envelopeerror","Envelope Error");
 define("_oscgiv_invalidenvelopenumber","Invalid Envelope Number");
 
-define("_oscgiv_paymenttype","Payment Type");
-define("_oscgiv_addressinfo","Address Info");
+define("_oscgiv_paymenttype","支付类型");
+define("_oscgiv_addressinfo","地址信息");
 
 define("_oscgiv_fund","Fund");
-define("_oscgiv_amount","Amount");
+define("_oscgiv_amount","总计");
 
 define("_oscgiv_applydefaults","Apply Defaults");
 
-define("_oscgiv_nav_donationmanagement","Donation Management");
-define("_oscgiv_nonamefound","No Match");
-define("_oscgiv_checknumber","Check Number");
-define("_oscgiv_reporttitle","Donation Reports");
-define("_oscgiv_submit","Submit");
+define("_oscgiv_nav_donationmanagement","捐赠管理");
+define("_oscgiv_nonamefound","不匹配");
+define("_oscgiv_checknumber","校验码");
+define("_oscgiv_reporttitle","捐赠报告");
+define("_oscgiv_submit","提交");
 
 define("_oscgiv_admin_givingsettings","Modify Giving Settings");
-define("_oscgiv_admin_permissions","Modify Permissions");
-define("_oscgiv_yearlydonationreport","Yearly Donation Reports");
-define("_oscgiv_fax","Fax");
-define("_oscgiv_phone","Telephone");
+define("_oscgiv_admin_permissions","修改权限");
+define("_oscgiv_yearlydonationreport","年度捐赠报告");
+define("_oscgiv_fax","传真");
+define("_oscgiv_phone","电话");
 define("_oscgiv_website","Website");
 define("_oscgiv_donationreport","Donation Report");
 define("_oscgiv_donationreports_TITLE","Donation Reports");
 define("_oscgiv_donationdates","Donation Dates");
 
 define("_oscgiv_grandtotal","Grand Total");
-define("_oscgiv_total","Total");
+define("_oscgiv_total","总计");
 define("_oscgiv_totalbyfundfor","Total by Fund For");
 ?>

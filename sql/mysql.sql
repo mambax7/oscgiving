@@ -28,7 +28,7 @@ CREATE TABLE `oscgiving_donations` (
   KEY `don_Date` (`don_Date`)
 ) ;
 
---One Row Table
+-- One Row Table
 CREATE TABLE `oscgiving_settings` (
   `id` mediumint(9) unsigned NOT NULL ,
   `letterendofyear` text default NULL,

@@ -32,8 +32,8 @@ CREATE TABLE `oscgiving_donations` (
 CREATE TABLE `oscgiving_settings` (
   `id` mediumint(9) unsigned NOT NULL ,
   `letterendofyear` text default NULL,
-  PRIMARY KEY  (`id`),
-) ;
+  PRIMARY KEY  (`id`)
+);
 
 
 # Setup for first letter

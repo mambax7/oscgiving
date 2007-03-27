@@ -37,12 +37,6 @@ if ( !is_object($xoopsUser) || !is_object($xoopsModule))  {
     exit("Access Denied");
 }
 
-if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
-
-if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
-{
-	exit(_oscgiv_accessdenied);
-}
 
 // this works well for letter size pages
 $maxColumnLength = 36;
@@ -61,13 +55,16 @@ elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirnam
 
 }
 
-//include membership modinfo.php
-include XOOPS_ROOT_PATH ."/modules/oscmembership/language/" . $xoopsConfig['language'] . "/modinfo.php";
 
 
 require XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/functions.php";
 
-if(!hasPerm("oscgiving_view",$xoopsUser)) exit(_oscgiv_access_denied);
+if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
+
+if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+{
+	exit(_oscgiv_accessdenied);
+}
 
 
 // Get the envelopes list

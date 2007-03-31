@@ -1,0 +1,19 @@
+<h2 class=comTitle><{$title}></h2>
+<{$selection}>
+<br><br>
+<{if isset($funds)}>
+<hr>
+<table class="outer"><TR>
+<th><{$fund_name}></th><th><{$fund_amount}></th></TR>
+<{foreach item=fund from=$funds}>
+<tr>
+<td><{$fund->getVar('fund_Name')}></td><td><{$fund->getVar('dna_Amount')}></td>
+</tr>
+<{/foreach}>
+</table>
+<{$sdate}>
+
+<br><br><center><img src="include/Graphs/funds1day.php?date=<{$sdate}>"></center>
+<br><br><center><img src="include/Graphs/donByMonth.php?year=<{$year}>"><{$year}></center>
+
+<{/if}>

@@ -1,0 +1,21 @@
+<h2 class=comTitle><{$title}></h2>
+
+<table class='outer' >
+<tr ><TD colspan="4"><{$oscgiv_yearlydonationreport}>:
+<{foreach item=year from=$years}>
+&nbsp;<a href="DonationReportYearly.php?year=<{$year}>"><{$year}></a>
+<{/foreach}>
+</a>
+</td>
+</tr>
+<tr><TD colspan="4"><a href="DonationReports.php"><{$oscgiv_donationreport}></a>
+</TD></tr>
+<tr ><TD colspan="4"><a href="CSVExport.php"><{$OSCMEM_csvexport}>
+</a>
+</td>
+</tr>
+<tr ><TD colspan="4"><a href="oscImport.php"><{$oscmem_csvimport}>
+</a>
+</td>
+</tr>
+</table>

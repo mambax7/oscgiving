@@ -103,7 +103,7 @@ class PDF extends FPDF
 
 function Header()
 {
-	$title = gettext("Donation Envelope List");
+	$title = _oscgiv_donationenvelopelist;
     $this->SetFont('Arial','B',15);
     $w=$this->GetStringWidth($title)+6;
 

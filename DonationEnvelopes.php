@@ -69,7 +69,7 @@ switch ($action)
 	break;
 	
 	case "assign":
-	$envelopesaffected=$envelope_handler->assignEnvelopetoCart();
+	$envelopesaffected=$envelope_handler->assignEnvelopetoCart($xoopsUser->uid());
 	break;	
 }
 

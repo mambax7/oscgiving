@@ -18,14 +18,14 @@ define("_oscgiv_defaultcountry_value",22);
 define("_oscgiv_defaultcountry_text"," &nbsp;&nbsp;(默认的国家是美国)");
 define("_oscgiv_accessdenied","访问被拒绝");
 define("_oscgiv_assignedenvelopes","Assigned Envelopes");
-define("_oscgiv_activeenvelopes","Active Envelopes within last two years");
-define("_oscgiv_highestenvelopenumber","Highest Envelope Number");
+define("_oscgiv_activeenvelopes","近两年有捐赠数");
+define("_oscgiv_highestenvelopenumber","最高信封号码");
 define("_oscgiv_autoassignevelopeslink","Auto-assign envelopes to all persons in the cart without envelopes");
 define("_oscgiv_reassignenvelopeslink","Re-assign all existing envelopes by assignees' names in alphabetical order");
-define("_oscgiv_displaylistassignedenvelopes","Display a list of all envelope assignments");
+define("_oscgiv_displaylistassignedenvelopes","显示所有指定信封列表");
 
-define("_oscgiv_donationenvelopemgt","Donation Envelope Management");
-define("_oscgiv_nav_donationenvelopes","Donation Envelopes");
+define("_oscgiv_donationenvelopemgt","捐赠信封管理");
+define("_oscgiv_nav_donationenvelopes","捐赠信封");
 
 define("_oscgiv_nav_donationbatchentry","Donation Batch Entries");
 

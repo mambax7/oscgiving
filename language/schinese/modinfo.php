@@ -27,25 +27,25 @@ define("_oscgiv_displaylistassignedenvelopes","显示所有指定信封列表");
 define("_oscgiv_donationenvelopemgt","捐赠信封管理");
 define("_oscgiv_nav_donationenvelopes","捐赠信封");
 
-define("_oscgiv_nav_donationbatchentry","Donation Batch Entries");
+define("_oscgiv_nav_donationbatchentry","捐赠批次输入");
 
-define("_oscgiv_envelopeassignment_success","Envelope Assignment Success");
+define("_oscgiv_envelopeassignment_success","信封指派成功");
 
 define("_oscgiv_membersaffected","受影响的成员");
 
 define("_oscgiv_NOONEINCART","No one in the cart to assign an envelope number to.");
 
-define("_oscgiv_ENVELOPEASSIGNSUCCESS","Envelope Assigment Success.");
+define("_oscgiv_ENVELOPEASSIGNSUCCESS","信封指派成功.");
 
-define("_oscgiv_envelopesassigned","Envelopes Assigned:");
+define("_oscgiv_envelopesassigned","被指定的信封:");
 
-define("_oscgiv_envelopassignconfirm","Proceed with envelope assignment?");
+define("_oscgiv_envelopassignconfirm","进行信封指定?");
 
 define("_oscgiv_donationbatchentry_title","Donation Batch Entry");
 
 define("_oscgiv_batchentrymode","Batch Entry Mode");
 define("_oscgiv_defaultdate","默认日期");
-define("_oscgiv_defaultfund","Default Fund");
+define("_oscgiv_defaultfund","默认用途");
 define("_oscgiv_none","无");
 define("_oscgiv_defaulttype","默认的支付类型");
 define("_oscgiv_nonte","无");
@@ -57,24 +57,24 @@ define("_oscgiv_receiptnumber","收据号码");
 define("_oscgiv_delete","删除");
 define("_oscgiv_donationdate","捐赠日期");
 define("_oscgiv_dateerror","日期错误");
-define("_oscgiv_envelopenumorlastname","Envelope Number or Last Name");
+define("_oscgiv_envelopenumorlastname","信封编号或姓氏");
 define("_oscgiv_search","搜索");
 define("_oscgiv_lookup","查找");
 define("_oscgiv_submitdonations","提交捐赠");
 define("_oscgiv_selecteddonor","选择的捐赠人");
 define("_oscgiv_nopersonwithlastnameassignedtoenvelope","No Person Assigned to Envelope");
 
-define("_oscgiv_envelopnumber","Envelope 号码");
-define("_oscgiv_envelopeerror","Envelope 错误");
-define("_oscgiv_invalidenvelopenumber","非法的 Envelope 号码");
+define("_oscgiv_envelopnumber","信封号码");
+define("_oscgiv_envelopeerror","信封错误");
+define("_oscgiv_invalidenvelopenumber","非法的信封号码");
 
 define("_oscgiv_paymenttype","支付类型");
 define("_oscgiv_addressinfo","地址信息");
 
-define("_oscgiv_fund","Fund");
+define("_oscgiv_fund","用途");
 define("_oscgiv_amount","总计");
 
-define("_oscgiv_applydefaults","Apply Defaults");
+define("_oscgiv_applydefaults","套用默认值");
 
 define("_oscgiv_nav_donationmanagement","捐赠管理");
 define("_oscgiv_nonamefound","不匹配");

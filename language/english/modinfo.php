@@ -96,4 +96,6 @@ define("_oscgiv_grandtotal","Grand Total");
 define("_oscgiv_total","Total");
 define("_oscgiv_totalbyfundfor","Total by Fund For");
 define("_oscgiv_donationenvelopelist","Donation Envelope List");
+define("_oscgiv_nomembers","No Members");
+
 ?>

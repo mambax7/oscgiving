@@ -177,7 +177,6 @@ switch ($smode)
 	case "submit":
 		foreach($donations as $donation)
 		{
-					echo "made it here";
 
 			if($donation->getVar('personid')>0)
 			{	

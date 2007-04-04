@@ -235,7 +235,7 @@ while($row = $db->fetchArray($members))
 }
 if($rowcount==0)
 {
-	$memberresult .= "<tr><td>" . _oscmem_nomembers . "</td></tr></table>" ;
+	$memberresult .= "<tr><td>" . _oscgiv_nomembers . "</td></tr></table>" ;
 	}
 else
 {

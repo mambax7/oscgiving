@@ -79,20 +79,23 @@ define("_oscgiv_applydefaults","套用預設值");
 define("_oscgiv_nav_donationmanagement","Donation Management");
 define("_oscgiv_nonamefound","No Match");
 define("_oscgiv_checknumber","支票號碼");
-define("_oscgiv_reporttitle","Donation Reports");
-define("_oscgiv_submit","Submit");
+define("_oscgiv_reporttitle","捐贈報告");
+define("_oscgiv_submit","送出");
 
 define("_oscgiv_admin_givingsettings","修改捐贈設定");
 define("_oscgiv_admin_permissions","修改權限");
-define("_oscgiv_yearlydonationreport","Yearly Donation Reports");
+define("_oscgiv_yearlydonationreport","年度捐贈報告");
 define("_oscgiv_fax","傳真");
 define("_oscgiv_phone","Telephone");
 define("_oscgiv_website","Website");
-define("_oscgiv_donationreport","Donation Report");
-define("_oscgiv_donationreports_TITLE","Donation Reports");
-define("_oscgiv_donationdates","Donation Dates");
+define("_oscgiv_donationreport","捐贈報告");
+define("_oscgiv_donationreports_TITLE","捐贈報告");
+define("_oscgiv_donationdates","捐贈日期");
 
-define("_oscgiv_grandtotal","Grand Total");
-define("_oscgiv_total","Total");
+define("_oscgiv_grandtotal","總計");
+define("_oscgiv_total","合計");
 define("_oscgiv_totalbyfundfor","Total by Fund For");
+define("_oscgiv_donationenvelopelist","Donation Envelope List");
+define("_oscgiv_nomembers","No Members");
+
 ?>

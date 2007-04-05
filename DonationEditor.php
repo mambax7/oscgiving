@@ -51,6 +51,8 @@ if(isset($_POST['defaultdate']))
 else
 	$sdefaultdate=Date("Y-m-d");
 
+$iDefaultFundID=0;
+$defaultpaymenttype=0;
 if (isset($_POST['DefaultFundID'])) $iDefaultFundID=$_POST['DefaultFundID'];
 if (isset($_POST['DefaultPaymentType'])) $defaultpaymenttype=$_POST['DefaultPaymentType'];
 
@@ -243,7 +245,7 @@ echo "</td>";
 echo "<td class='TextColumn'>";
 echo "<b>" . _oscgiv_defaultfund. "</b><br>";
 echo "<select name='DefaultFundID'>";
-echo "<option value='0'>" . _oscgiv_none . "</option>";
+//echo "<option value='0'>" . _oscgiv_none . "</option>";
 
 foreach($funds as $fund)
 {
@@ -351,7 +353,7 @@ foreach($donations as $donation)
 	echo "</td>";
 	echo "<td>";
 	echo "<select name='fund" . $donation->getVar('iteration') . "'  id='fund" . $donation->getVar('iteration') . "'>";
-	echo "<option value='0'>" . _oscgiv_none . "</option>";
+//	echo "<option value='0'>" . _oscgiv_none . "</option>";
 	foreach($funds as $fund)
 	{
 		echo "<option value=\"" . $fund->getVar('fund_id') . "\"";

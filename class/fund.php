@@ -77,7 +77,7 @@ class oscGivingFundHandler extends XoopsObjectHandler
 
     function &getDonationsbydatebyfund($thisdate)
     {
-	$sql="select df.fund_id, df.fund_Active, df.fund_Name, df.fund_Description, da.dna_Amount  from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+	$sql="select da.dna_fun_ID, df.fund_Active, df.fund_Name, df.fund_Description, da.dna_Amount  from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
 on d.don_id = da.don_id join " . $this->db->prefix("oscgiving_donationfunds") . " df on da.dna_fun_ID = df.fund_id 
 where d.don_Date=" . $this->db->quoteString($thisdate) . " group by dna_fun_ID";
 

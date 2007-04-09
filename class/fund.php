@@ -63,7 +63,8 @@ class oscGivingFundHandler extends XoopsObjectHandler
 	$i=0;	
 	while ($row = $this->db->fetchArray($result))
 	{
-	
+
+		$fund =&$this->create(false);
 		$fund->assignVars($row);
 //		echo $fund->getVar('fund_Name');
 		$funds[$i]=$fund;
@@ -88,6 +89,7 @@ where d.don_Date=" . $this->db->quoteString($thisdate) . " group by dna_fun_ID";
 	$i=0;	
 	while ($row = $this->db->fetchArray($result))
 	{
+		$fund =&$this->create(false);
 		$fund->assignVars($row);
 		$funds[$i]=$fund;
 		$i++;

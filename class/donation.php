@@ -173,6 +173,7 @@ class oscGivingDonationHandler extends XoopsObjectHandler
 	$i=0;	
 	while ($row = $this->db->fetchArray($result))
 	{
+	    	$person=$giv_person_handler->create(false);
 		$person->assignVars($row);
 		$persons[$i]=$person;
 		$i++;
@@ -198,6 +199,7 @@ and year(d.don_Date)=" . $lyear;
 	$i=0;	
 	while ($row = $this->db->fetchArray($result))
 	{
+	    	$donation=&$this->create(False);
 		$donation->assignVars($row);
 		$donations[$i]=$donation;
 		$i++;
@@ -260,6 +262,7 @@ where d.don_Date='" . $thisdate . "'";
 	$i=0;	
 	while ($row = $this->db->fetchArray($result))
 	{
+	    	$donation=&$this->create(False);
 		$donation->assignVars($row);
 		$donations[$i]=$donation;
 		$i++;

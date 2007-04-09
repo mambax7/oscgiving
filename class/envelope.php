@@ -90,6 +90,7 @@ class oscGivingEnvelopeHandler extends XoopsObjectHandler
 	while($row = $this->db->fetchArray($result)) 
 	{
 		$rowcount++;
+		$person=$person_handler->create(false);
 		$person->assignVars($row);
 		
 		// Use up any unassigned envelopes first.  Then, create new (higher) numbers.

@@ -62,6 +62,7 @@ if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
 	exit(_oscgiv_accessdenied);
 }
 
+$sdate="";
 if(isset($_POST['dateid'])) $sdate=$_POST['dateid'];
 
 $form = new XoopsThemeForm(_oscgiv_donationreports_TITLE, "donationreport", "DonationReports.php", "post", true);

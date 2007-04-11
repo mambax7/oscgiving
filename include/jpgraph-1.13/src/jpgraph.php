@@ -614,6 +614,9 @@ function sign($a) {return $a >= 0 ? 1 : -1;}
 // from a script that uses JpGraph
 function GenImgName() {
     global $HTTP_SERVER_VARS;
+    if(!$HTTP_SERVER_VARS)  //SRM added 4/10/07
+    	$HTTP_SERVER_VARS=$_SERVER;
+	
     $supported = imagetypes();
     if( $supported & IMG_PNG )
 	$img_format="png";

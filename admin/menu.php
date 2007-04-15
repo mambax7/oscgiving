@@ -8,4 +8,8 @@ $admini++;
 $adminmenu[$admini]['title'] = _oscgiv_admin_givingsettings;
 $adminmenu[$admini]['link'] = "admin/yearendform.php";
 
+$admini++;
+$adminmenu[$admini]['title'] = _oscgiv_admin_funds;
+$adminmenu[$admini]['link'] = "admin/fundselect.php";
+
 ?>

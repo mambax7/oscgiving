@@ -98,6 +98,59 @@ where d.don_Date=" . $this->db->quoteString($thisdate) . " group by dna_fun_ID";
 	return $funds;
     }
 
+    function &getFund($id)
+    {
+	$fund =&$this->create(false);
+
+	$sSQL = "SELECT DISTINCT * FROM " . $this->db->prefix("oscgiving_donationfunds") . " where fund_id=" . $id;
+	$result = $this->db->query($sSQL);
+
+	$i=0;	
+	while ($row = $this->db->fetchArray($result))
+	{
+
+		$fund =&$this->create(false);
+		$fund->assignVars($row);
+	}
+
+	return $fund;
+    }
+
+	function &update(&$fund)
+    	{
+		$sql = "UPDATE " . $fund->table
+		. " SET "		
+		. "fund_Name=" . $this->db->quoteString($fund->getVar('fund_Name')) . " where fund_id=" . $fund->getVar('fund_id');
+
+		if (!$result = $this->db->query($sql)) {
+			return false;
+			}
+			else { return true; }
+	
+	}
+
+	function &insert(&$fund)
+    	{
+		$sql = "INSERT into " . $fund->table
+		. "(fund_Active, fund_Name, fund_Description) ";
+	
+		$sql = $sql . "values(" . $this->db->quoteString($fund->getVar('fund_Active'))
+		. "," . 
+		$this->db->quoteString($fund->getVar('fund_Name'))
+		. "," .
+		$this->db->quoteString($fund->getVar('fund_Description')) . ")";
+		
+		if (!$result = $this->db->query($sql)) 
+		{
+			return false;
+			}
+			else
+			{
+			return  $this->db->getInsertId();
+			}
+	
+	
+	}
 
 }
 

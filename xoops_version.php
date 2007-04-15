@@ -24,6 +24,8 @@ $modversion['templates'][2]['file'] = 'donationreports.html';
 $modversion['templates'][2]['description'] = 'Donation Reports Menu';
 $modversion['templates'][3]['file'] = 'oscgivreports.html';
 $modversion['templates'][3]['description'] = 'Donation Reports';
+$modversion['templates'][4]['file'] = 'fundlist.html';
+$modversion['templates'][4]['description'] = 'Funds';
 
 
 $modversion['blocks'][1]['file'] = "oscgivnav.php";

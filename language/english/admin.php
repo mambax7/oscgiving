@@ -30,4 +30,14 @@ ate of Letter</li><li>[donationtable]: Inserts a list/table of donations made by
 
 define("_oscgiv_yearendletter_savesuccess","Changes to year end letter have been successfully saved.");
 
+define("_oscgiv_edit","Edit");
+define("_oscgiv_fundname","Fund Name");
+define("_oscgiv_fundlist","List of Funds");
+define("_oscgiv_addfund","Add Fund");
+define("_oscgiv_funds","Funds");
+
+define("_oscgiv_fundadmin_TITLE","Fund Detail");
+
+define("_oscgiv_fundcreatefailure","Fund Creation Failed");
+define("_oscgiv_fundupdatefailure","Fund Update Failed");
 ?>

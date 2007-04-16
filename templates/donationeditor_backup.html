@@ -1,0 +1,328 @@
+<h2 class=comTitle><{$title}></h2>
+
+<script type="text/javascript">
+	
+	var IFrameObj; // our IFrame object
+
+	function UpdateAddress(person_ID)
+	{
+		//var person_ID = document.getElementById('EnvID').value;
+		if (!document.createElement) {return true};
+		var IFrameDoc;
+		var URL = 'RPCdummy.php?mode=Envelope2Address&data=' + person_ID;
+		
+		if (!IFrameObj && document.createElement) {
+			var tempIFrame=document.createElement('iframe');
+			tempIFrame.setAttribute('id','RSIFrame');
+			tempIFrame.style.border='0px';
+			tempIFrame.style.width='0px';
+			tempIFrame.style.height='0px';
+			IFrameObj = document.body.appendChild(tempIFrame);
+
+			if (document.frames) {
+				// For IE5 Mac
+				IFrameObj = document.frames['RSIFrame'];
+			}
+		}
+		
+		if (navigator.userAgent.indexOf('Gecko') !=-1
+			&& !IFrameObj.contentDocument) {
+			// For NS6
+			setTimeout('AddToCart()',10);
+			return false;
+		}
+
+		if (IFrameObj.contentDocument) {
+			// For NS6
+			IFrameDoc = IFrameObj.contentDocument;
+		} else if (IFrameObj.contentWindow) {
+			// For IE5.5 and IE6
+			IFrameDoc = IFrameObj.contentWindow.document;
+		} else if (IFrameObj.document) {
+			// For IE5
+			IFrameDoc = IFrameObj.document;
+		} else {
+			return true;
+		}
+
+		IFrameDoc.location.replace(URL);
+		return false;
+	}
+
+	function updateAddressInfo(generated_html)
+	{
+		if (generated_html == "invalid") {
+			document.getElementById('AddressInfo').innerHTML = '<p class="LargeError"><?php echo gettext("Invalid Envelope Number!") ?><p>';
+			document.getElementById('EnvID').value = '';
+		} else {
+			document.getElementById('AddressInfo').innerHTML = generated_html;
+		}
+	}
+
+	function UpdateInfo()
+	{
+		document.getElementById('Envelope').innerHTML = '<b><?php echo gettext("Envelope #:"); ?></b><br />' +
+															document.forms['DonationForm'].DonorList.value;
+		UpdateAddress(document.forms['DonationForm'].DonorList.value);
+	}
+
+	function clearForm(isBatchMode,iFundEntries,prevDate)
+	{
+		document.forms['DonationForm'].DonorLast.value = '';
+		document.getElementById('DonorListDiv').innerHTML = '<b><?php echo gettext("Selected donor:"); ?></b>';
+		document.getElementById('Envelope').innerHTML = '<b><?php echo gettext("Envelope #:"); ?></b>';
+		document.forms['DonationForm'].CheckNumber.value = '';
+		document.forms['DonationForm'].Date.value = prevDate;
+		document.getElementById('total').innerHTML = '0';
+
+		if (isBatchMode)
+		{
+			document.forms['DonationForm'].PaymentType.selectedIndex = document.forms['DonationForm'].DefaultPaymentType.selectedIndex;
+			document.getElementById('AddressInfo').innerHTML = '<b><?php echo gettext("Address Info:"); ?></b>';
+			document.forms['DonationForm'].Date.value = document.forms['DonationForm'].DefaultDate.value;
+		}
+		else
+		{
+			document.forms['DonationForm'].PaymentType.selectedIndex = '';
+			document.forms['DonationForm'].Date.value = prevDate;
+		}
+
+		for (fundRow = 1; fundRow <= iFundEntries; fundRow++)
+		{
+			document.forms['DonationForm'].elements['FundID' + fundRow].selectedIndex = 0;
+			document.forms['DonationForm'].elements['FundAmount' + fundRow].value = '';
+		}
+
+		if (isBatchMode)
+			document.forms['DonationForm'].FundID1.selectedIndex = document.forms['DonationForm'].DefaultFundID.selectedIndex;
+	}
+
+	function updateTotal()
+	{
+		var total = 0;
+		for (fundRow = 1; fundRow <= <?php echo $iFundEntries;?>; fundRow++)
+		{
+			var thisValue = parseFloat(document.forms['DonationForm'].elements['FundAmount' + fundRow].value);
+			if (!isNaN(thisValue))
+				total += thisValue;
+		}
+		document.getElementById('total').innerHTML = total;
+	}
+
+</script>
+
+<form name="DonationForm" method="post" action="DonationEditor.php?PersonID=<{$personid}>&DonationID=<{$donationid}>&Batch=1">
+<input type="hidden" value="<{$personid}>" name="DonorID">
+
+<{if $batchMode }>
+<p class="LargeText" align="center"><$oscgiv_batchentrymode}><{$oscgiv_batchentrymode}></p>
+<table align="center" cellpadding="3" border=1>
+	<tr>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaultdate}></b><br>
+			<input type="text" Name="DefaultDate" id="DefaultDateField" value="<{$oscgiv_sdefaultdate}>" size="15" maxlength="15" onfocus="ClearFieldOnce(this);"><input type="image" onclick="return showCalendar('DefaultDateField', 'y-mm-dd');" src="Images/calendar.gif">
+		</td>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaultfund}>></b><br>
+			<select name="DefaultFundID">
+			<option value="0"><{$oscgive_none}></option>
+			<!--
+			<?php
+				while ($row = mysql_fetch_array($rsFunds))
+				{
+					$fun_id = $row["fun_ID"];
+					$fun_name = $row["fun_Name"];
+					echo "<option value=\"$fun_id\" " ;
+					if ($_SESSION['iDefaultFundID']==$fun_id)
+						echo "selected" ;
+					echo ">$fun_name</option>" ;
+				}
+			?>
+			-->
+			</select>
+		</td>
+		<td class="TextColumn">
+			<b><{$oscgiv_defaulttype}></b><br>
+			<select name="DefaultPaymentType">
+			<option <{if $defaultpaymenttype==1}>selected <{/if}>
+			value="1"><{$oscgiv_cash}></optionf
+			<option <{if $defaultpaymenttype==2}>selected <{/if}> value="2"><{$oscgiv_check}></option>
+			<option <{if $defaultpaymenttype==3}></{if>
+			selected <{/if}> value="3"><{$oscgiv_credit}></option>
+			</select>
+     		</td>
+	</tr>
+</table>
+
+<table align="center" cellspacing="5" cellpadding="5" border=1 width="40%">
+	<tr>
+		<td width="10%">
+			<{if $editorMode}>
+				<{if $batchMode=='true'}>
+					<{$batchOption = 'true'}>
+				<{else}>
+					<{$batchOption = 'false'}>
+					<br><input class="icButton" type="button" value=<{$oscgiv_clear}> onclick="clearForm(<{$batchOption}>,<{$iFundEntries}>,<{$sDate}>)">
+				<{/if}>
+			<{else}>
+				<p align="center"><b><{$oscgiv_receiptnumber}></p>
+				<p align="center" class="LargeText"><{$idonationid}></p></b><br>
+				<input type="button" value="<{$oscgiv_delete}>" Name="delete" onclick="window.location='DonationDelete.php?donID=<{$idonationid}>';">
+			<{/if}>
+		</td>
+		<td width="90%">
+			<table align="center" cellpadding="10">
+				<tr>
+					<td>
+						<b><{$oscgiv_donationdate}></b><br>
+						<input type="text" Name="Date" id="DateField" value="<{$sDate}>" size="15" maxlength="15" onfocus="ClearFieldOnce(this);"><input type="image" onclick="return showCalendar('DateField', 'y-mm-dd');" src="Images/calendar.gif">
+						<font color="red"><{$oscgiv_dateerror}></font>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<b><{$oscgiv_envelopenumorlastname}></b><br />
+						<input type="text" Name="DonorLast" id="Donor" value="<{$sLastOrEnv}>" size="25" maxlength="50" />
+					</td>
+					<td>
+						<br />
+						<input type="submit" class="icButton" value="<{$oscgiv_search}>" Name="SearchDonor">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="DonorListDiv" class="ShadedBox">
+						<b><{$oscgiv_selecteddonor}>:</b>
+						<select id="DonorList" name="DonorList" size="<{$iSize}>" onChange="UpdateInfo(); ">
+							<option selected value="<{$aEnvelopeID[1]}>"><{$aFullName[1]}></option>
+							
+							--Call For loop here
+						</select>
+<{else}>
+				
+						<br />
+						<font color="red">
+	<{if $bWasEnvelopeID==false }>
+		<{$oscgiv_nopersonwithlastnameassignedtoenvelope}>
+	<{/if}>
+	
+						</font>
+<{/if}>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td nowrap>
+						<div id="Envelope" class="ShadedBox">
+						<b><{$oscgiv_envelopnumber}>
+						</b><br />
+						<font color="red">
+						<{$oscgiv_envelopeerror}>
+						</font>
+<{if isset($bWasEnvelopeID) && ($bWasEnvelopeID==true) && ($numDonors==0) }>
+			<font color="red">
+			<{$oscgiv_invalidenvelopenumber}>
+			</font>
+<{else}>
+	<{$iEnvelope}>
+<{/if}>
+
+	</div>
+			</td>
+			<td nowrap>
+			<b>
+			<{$oscgiv_paymenttype}>:
+			</b><br>
+			<select Name="PaymentType" id="PaymentType">
+			<option <{$iPaymentType}>
+			<{if $iPaymentType==1 }>
+			"selected"
+			<{/if}>
+			value="1">
+			<{$oscgiv_cash}>
+			</option>
+			<option
+			<{if $iPaymentType==2 }>
+			"selected"
+			<{/if}>
+			value="2">
+			<{$oscgiv_check}>
+			</option>
+			<option 
+			<{if $iPaymentType==3 }>
+			"selected"
+			<{/if}>
+			value="3">
+			<{$oscgiv_credit}>
+			</option>
+			</select>
+			<br><font color="red"><{$oscgiv_paymenterror}>
+			</font>
+			</td>
+			<td nowrap>
+			<b><{$oscgiv_checknumber}>:</b><br>
+			<input type="text" Name="CheckNumber" id="CheckNumber" value="<{$iCheckNumber}>" size="10" maxlength="10">
+			<br><font color="red"><{$oscgiv_checkerror}>
+			</font>
+			</td>
+			</tr>
+			<tr>
+			<td colspan="2">
+			<div id="AddressInfo" class="ShadedBox">
+			<b><{$oscgiv_addressinfo}>:</b><br>
+			<{if $sAddress1!="" }>
+				<{$sAddress1}><br>
+			<{/if}>
+			<{if $sAddress2!="" }>
+				<{$sAddress2}><br>
+			<{/if}>
+			<{if $sCity!="" }>
+				<{$sCity}>,
+			<{/if}>
+			<{if $sState!="" }>
+				<{$sState}>
+			<{/if}>
+			<{if $sZip!="" }>
+				&nbsp;<{$sZip}>
+			<{/if}>
+			<{if $sCountry!="" }>
+				<br><{$sCountry}>
+			<{/if}>
+			</div>
+			</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<{if $noValid }>
+				<font color="red"><{$oscgiv_validfundrequired}></font>
+			<{/if}>
+			<table align="center" width="80%">
+				<tr>
+					<th class="HeaderRow" width="20%">&nbsp;</th>
+					<th class="HeaderRow" width="60%"><{$oscgiv_fund}></th>
+					<th class="HeaderRow" width="20%"><{$oscgiv_amount}></th>
+				</tr>
+				
+			--call for loop here
+				<tr>
+					<td>&nbsp;</td>
+					<td class="MediumText" align="right"><b><{$oscgiv_total}>:</b></td>
+					<td class="MediumText" align="center"><b><div id="total"><{$totalAmount}></div></b></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+</form>
+
+<{if (isset($iEnvelope) && ($iEnvelope!=""))}>
+<script type="text/javascript">UpdateAddress("<{$iEnvelope}>");</script>
+<{/if}>
+

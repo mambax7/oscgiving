@@ -1,0 +1,19 @@
+<table class="outer">
+<h2><{$title}></h2>
+<tr><TD colspan="4">
+<a href='funddetailform.php?action=create'>
+<{$add_fund}></a>
+
+</TD></tr>
+  <tr>
+    <th><{$oscgiv_fundname}></th>
+    <th>&nbsp;</th>
+  </tr>
+<{foreach item=fund from=$funds}>
+  <tr>
+    <td><{$fund->getVar('fund_Name')}></td>
+    <td><a href='funddetailform.php?id=<{$fund->getVar('fund_id')}>&action=save'><{$oscgiv_edit}></a></td>
+
+    </tr>
+<{/foreach}>
+</table>

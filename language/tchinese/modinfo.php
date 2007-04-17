@@ -1,6 +1,7 @@
 <?php
 // Module 
 //
+define("_oscgiv_admin_funds","Modify Funds");
 define("_oscgiv_MOD_NAME","OSC Giving Module");
 define("_oscgiv_MOD_DESC","Xoops OSC Module for Membership Giving.");
 define("_oscgiv_ADMENU0","OSC Giving Administation");
@@ -97,5 +98,6 @@ define("_oscgiv_total","¦X­p");
 define("_oscgiv_totalbyfundfor","Total by Fund For");
 define("_oscgiv_donationenvelopelist","Donation Envelope List");
 define("_oscgiv_nomembers","No Members");
-
+define("_oscgiv_fundupdatesuccess","&#x6350;&#x8D08;&#x7528;&#x9014;&#x5DF2;&#x66F4;&#x65B0;");
+define("_oscgiv_fundcreatesuccess","&#x6350;&#x8D08;&#x7528;&#x9014;&#x5DF2;&#x5EFA;&#x7ACB;");
 ?>

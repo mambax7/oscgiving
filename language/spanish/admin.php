@@ -29,4 +29,14 @@ define("_oscgiv_letterfields_fields","<ul><li>[donatorname]: Nombre del donador<
 
 define("_oscgiv_yearendletter_savesuccess","Las modificaciones realizadas a la carta de fin de a&ntilde;o fueron guardadas exitosamente.");
 
+define("_oscgiv_edit","Modificar");
+define("_oscgiv_fundname","Nombre del Fondo");
+define("_oscgiv_fundlist","Listado de Fondos");
+define("_oscgiv_addfund","Agregar Fondo");
+define("_oscgiv_funds","Fondos");
+
+define("_oscgiv_fundadmin_TITLE","Detalles del Fondo");
+
+define("_oscgiv_fundcreatefailure","Creaci&oacute;n del Fondo no Exitosa");
+define("_oscgiv_fundupdatefailure","Actualizaci&oacute;n de Fondo no Exitosa");
 ?>

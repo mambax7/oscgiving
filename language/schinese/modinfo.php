@@ -1,6 +1,9 @@
 <?php
 // Module 
 //
+define("_oscgiv_admin_funds","Modify Funds");
+
+
 define("_oscgiv_MOD_NAME","OSC Giving Module");
 define("_oscgiv_MOD_DESC","Xoops OSC Module for Membership Giving.");
 define("_oscgiv_ADMENU0","OSC Giving Administation");
@@ -15,10 +18,10 @@ define("_oscgiv_view","视图");
 
 define("_oscgiv_defaultcountry_value",22);
 
-define("_oscgiv_defaultcountry_text"," &nbsp;&nbsp;(默认的国家是美国)");
+define("_oscgiv_defaultcountry_text"," &nbsp;&nbsp;( 默认的国家是美国)");
 define("_oscgiv_accessdenied","访问被拒绝");
 define("_oscgiv_assignedenvelopes","Assigned Envelopes");
-define("_oscgiv_activeenvelopes","近两年有捐赠数");
+define("_oscgiv_activeenvelopes","近两年捐赠数");
 define("_oscgiv_highestenvelopenumber","最高信封号码");
 define("_oscgiv_autoassignevelopeslink","Auto-assign envelopes to all persons in the cart without envelopes");
 define("_oscgiv_reassignenvelopeslink","Re-assign all existing envelopes by assignees' names in alphabetical order");
@@ -35,7 +38,7 @@ define("_oscgiv_membersaffected","受影响的成员");
 
 define("_oscgiv_NOONEINCART","No one in the cart to assign an envelope number to.");
 
-define("_oscgiv_ENVELOPEASSIGNSUCCESS","信封指派成功.");
+define("_oscgiv_ENVELOPEASSIGNSUCCESS","信封指派成功");
 
 define("_oscgiv_envelopesassigned","被指定的信封:");
 
@@ -62,7 +65,7 @@ define("_oscgiv_search","搜索");
 define("_oscgiv_lookup","查找");
 define("_oscgiv_submitdonations","提交捐赠");
 define("_oscgiv_selecteddonor","选择的捐赠人");
-define("_oscgiv_nopersonwithlastnameassignedtoenvelope","No Person Assigned to Envelope");
+define("_oscgiv_nopersonwithlastnameassignedtoenvelope","没有人被指派给信封");
 
 define("_oscgiv_envelopnumber","信封号码");
 define("_oscgiv_envelopeerror","信封错误");
@@ -92,7 +95,11 @@ define("_oscgiv_donationreport","捐赠报告");
 define("_oscgiv_donationreports_TITLE","捐赠报告");
 define("_oscgiv_donationdates","捐赠日期");
 
-define("_oscgiv_grandtotal","Grand Total");
+define("_oscgiv_grandtotal","总和");
 define("_oscgiv_total","总计");
 define("_oscgiv_totalbyfundfor","Total by Fund For");
+define("_oscgiv_donationenvelopelist","捐赠信封列表");
+define("_oscgiv_nomembers","没有成员");
+define("_oscgiv_fundupdatesuccess","Fund 被成功更新");
+define("_oscgiv_fundcreatesuccess","Fund 被成功创建");
 ?>

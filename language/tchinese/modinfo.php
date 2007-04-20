@@ -1,7 +1,7 @@
 <?php
 // Module 
 //
-define("_oscgiv_admin_funds","Modify Funds");
+define("_oscgiv_admin_funds","�ק﮽�إγ~");
 define("_oscgiv_MOD_NAME","OSC Giving Module");
 define("_oscgiv_MOD_DESC","Xoops OSC Module for Membership Giving.");
 define("_oscgiv_ADMENU0","OSC Giving Administation");

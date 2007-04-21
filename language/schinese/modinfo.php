@@ -1,7 +1,7 @@
 <?php
 // Module 
 //
-define("_oscgiv_admin_funds","Modify Funds");
+define("_oscgiv_admin_funds","ÐÞ¸Ä¾èÔùÓÃÍ¾");
 
 
 define("_oscgiv_MOD_NAME","OSC Giving Module");

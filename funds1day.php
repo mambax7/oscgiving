@@ -48,11 +48,13 @@ if (!$xoopsUser)
 
 include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
 
-if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
-
-if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {
-	exit(_oscgiv_accessdenied);
+$ispermmodify=true;
+}
+if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
+{
+    redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 }
 
 if(isset($_GET['date'])) $sdate=$_GET['date'];

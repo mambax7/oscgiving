@@ -29,13 +29,9 @@ include_once "../../mainfile.php";
 //redirect
 if (!$xoopsUser)
 {
-    redirect_header(XOOPS_URL."/user.php", 3, _AD_NORIGHT);
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
 }
 
-//verify permission
-if ( !is_object($xoopsUser) || !is_object($xoopsModule))  {
-    exit("Access Denied");
-}
 
 
 // this works well for letter size pages
@@ -59,11 +55,13 @@ elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirnam
 
 require XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/functions.php";
 
-if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
-
-if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {
-	exit(_oscgiv_accessdenied);
+$ispermmodify=true;
+}
+if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
+{
+    redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 }
 
 

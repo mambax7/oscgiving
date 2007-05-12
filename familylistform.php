@@ -9,15 +9,10 @@ if (!$xoopsUser)
 }
 
 
-//verify permission
-if ( !is_object($xoopsUser) || !is_object($xoopsModule) || !$xoopsUser->isAdmin($xoopsModule->mid()) ) {
-    exit(_oscmem_access_denied);
-}
-
 
 include XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/functions.php";
 
-if(!hasPerm("oscmembership_view",$xoopsUser)) exit(_oscmem_access_denied);
+if(!hasPerm("oscmembership_view",$xoopsUser))     redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 
 if(hasPerm("oscmembership_view",$xoopsUser)) $ispermview=true;
 if(hasPerm("oscmembership_modify",$xoopsUser)) $ispermmodify=true;

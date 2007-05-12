@@ -2,11 +2,6 @@
 include("../../mainfile.php");
 $GLOBALS['xoopsOption']['template_main'] ="donationenvelope.html";
 
-//redirect
-if (!$xoopsUser)
-{
-    redirect_header(XOOPS_URL."/user.php", 3, _AD_NORIGHT);
-}
 
 include XOOPS_ROOT_PATH."/include/cp_functions.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
@@ -16,11 +11,23 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include
 
 include(XOOPS_ROOT_PATH."/header.php");
 
-if(hasPerm("oscgiving_modify",$xoopsUser)) $ispermmodify=true;
-
-if(!$ispermmodify | !$xoopsUser->isAdmin($xoopsModule->mid()))
+//redirect
+if (!$xoopsUser)
 {
-	exit(_oscgiv_accessdenied);
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
+
+$user=$xoopsUser;
+$perm="oscgiving_modify";
+$userId = ($user) ? $user->getVar('uid') : 0;
+
+if(hasPerm("oscgiving_modify",$xoopsUser)) 
+{
+$ispermmodify=true;
+}
+if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
+{
+    redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 }
 
 $giv_handler= &xoops_getmodulehandler('envelope', 'oscgiving');

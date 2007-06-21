@@ -297,8 +297,8 @@ class PDF extends HTML2FPDF
 
 //		echo $out;
 				
-//		$out="<b>this is a test</b><br><br>oh yea";
-//		$out.="<br><table><tr><td>yes</td><td>no</td></tr></table>";
+		$out="<b>this is a test</b><br><br>oh yea";
+		$out.="<br><table><tr><td>yes</td><td>no</td></tr></table>";
 		$this->WriteHTML($out);
 	
 	

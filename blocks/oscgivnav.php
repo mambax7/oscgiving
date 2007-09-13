@@ -50,7 +50,7 @@ $content_block="
 
 <a href='" . XOOPS_URL . "/modules/oscgiving/DonationEditor.php'> " . _oscgiv_nav_donationbatchentry . "</a>
 </small></td>
-<td>|</td><td align=center><small><a href='" . XOOPS_URL . "/modules/oscgiving/reports.php'>" . _oscmem_nav_reports . "</a></small></td>
+<td>|</td><td align=center><small><a href='" . XOOPS_URL . "/modules/oscgiving/reports.php'>" . _oscgiv_nav_reports . "</a></small></td>
 </tr>
 </table>
 ";

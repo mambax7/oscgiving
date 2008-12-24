@@ -149,9 +149,11 @@ function EnvelopeTable($header,&$data,$startIndex,$size)
 	$person_handler = &xoops_getmodulehandler('person', 'oscmembership');
 	$person=$person_handler->create(false);
 		
-	for($i=0; $i < $maxColumnLength; $i++)
+	for($i=0; $i < count($data); $i++)
 	{
+
 		if ($Column1Size > 0) {
+			$person=$person_handler->create(false);
 			$row = $startIndex + $i;
 			$person=$data[$row];
 			
@@ -171,16 +173,26 @@ function EnvelopeTable($header,&$data,$startIndex,$size)
 		}
 
 		if ($Column2Size > 0) {
-			$row = $startIndex + $maxColumnLength + $i;
-			$person->assignVars($data[$row]);
-			$sName2 = FormatFullName('', $person->getVar('lastname'), $person->getVar('firstname'), $person->getVar('address1'), $person->getVar('address2'), 1);
-
-			if (strlen($person->getVar('address1')) > 0)
-				$sAddress2 = $person->getVar('address1');
+			$person=$person_handler->create(false);
+			$row = $maxColumnLength + $i;
+			if(isset($data[$row]))
+			{
+				$person=$data[$row];
+				$sName2 = FormatFullName($person->getVar('title'), $person->getVar('firstname'), $person->getVar('middlename'),$person->getVar('lastname'), $person->getVar('suffix'), 1);
+	
+				if (strlen($person->getVar('address1')) > 0)
+					$sAddress2 = $person->getVar('address1');
+				else
+					$sAddress2 = $person->getVar('address2');
+	
+				$sEnvelope2 = $person->getVar('envelope');
+			}
 			else
-				$sAddress2 = $person->getVar('address2');
-
-			$sEnvelope2 = $person->getVar('envelope');
+			{
+				$sName2="";
+				$sEnvelope2="";
+				$sAddress2="";
+			}
 			$Column2Size--;
 		} else {
 			$sName2 = "";
@@ -196,7 +208,23 @@ function EnvelopeTable($header,&$data,$startIndex,$size)
 		$this->Cell(40,6,$sName2,1);
 		$this->Cell(40,6,$sAddress2,1);
 
-		$this->Ln();
+		if($Column1Size==0 && $i<count($data)-2)
+		{
+			//paginate
+			$this->AddPage();
+			if (count($data) - $i > $maxColumnLength)	{
+				$Column1Size = $maxColumnLength;
+				$Column2Size = count($data) - $i - $maxColumnLength;
+			} else {
+				$Column1Size = count($data)- $i;
+				$Column2Size = 0;
+			}
+
+			$i=$i+$maxColumnLength;
+
+		}
+		else $this->Ln();
+
 	}
 }
 
@@ -210,7 +238,7 @@ $pdf->Open();
 $startIndex = 0;
 $count = count($persons);
 
-if(count($persons)>0)
+if($count>0)
 //while ($count > 0)
 {
 	$maxSize = $maxColumnLength * 2;
@@ -226,7 +254,6 @@ if(count($persons)>0)
 
 	$startIndex += $size;
 }
-
 if ($iPDFOutputType == 1)
 	$pdf->Output("EnvelopeList-" . date("Ymd-Gis") . ".pdf", true);
 else

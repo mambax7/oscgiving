@@ -69,7 +69,7 @@ $person_handler = &xoops_getmodulehandler('person', 'oscmembership');
 
 $smode="";
 
-for($i=0;$i<=3;$i++)
+for($i=0;$i<=40;$i++)
 {
 	$donation=$donation_handler->create(false);
 	$donation->assignVar('iteration',$i);

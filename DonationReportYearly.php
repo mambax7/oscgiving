@@ -116,8 +116,17 @@ class PDF extends HTML2FPDF
 		$donorname=$person->getVar('lastname') . ", " . $person->getVar('firstname');
 
 		$out=str_replace("[donorname]",$donorname,$out);
+		$out=str_replace("[donorfirstname]",$person->getVar('firstname'),$out);
 		
-		$donoraddress=$person->getVar('');
+		$donoraddress=$person->getVar('address1');
+
+		if(strlen($person->getVar('address2'))>0) 
+		{
+
+			$donoraddress= $donoraddress . "<br>" . $person->getVar('address2');
+		}
+
+		$donoraddress = $donoraddress . "<br>" . $person->getVar('city') . ", " . $person->getVar('state') . "&nbsp;&nbsp;" . $person->getVar('zip');
 		
 		$out=str_replace("[donoraddress]",$donoraddress,$out);
 		$out=str_replace("\r\n","<br>",$out);

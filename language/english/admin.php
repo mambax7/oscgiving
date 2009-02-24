@@ -24,6 +24,7 @@ define("_oscgiv_letterfields_instructions","Use the following fields to custmize
 define("_oscgiv_letterfields_fields","<ul><li>[donatorname]: Name of donator</li><li>[date]: D
 ate of Letter</li><li>[donationtable]: Inserts a list/table of donations made by the individual donator for the selected year.</li>
 <li>[donoraddress]: Address of donor</li>
+<li>[donorfirstname]: First Name of donor</li>
 <li>[churchname]: Name of church.  Pulled from OSCMembership settings.</li>
 <li>[year]: Year select for donation report.</li>
 <li>[totaldonationamount]: Total donation amount for selected year</li></ul>");

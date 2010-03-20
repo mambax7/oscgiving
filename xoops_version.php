@@ -27,6 +27,9 @@ $modversion['templates'][3]['description'] = 'Donation Reports';
 $modversion['templates'][4]['file'] = 'fundlist.html';
 $modversion['templates'][4]['description'] = 'Funds';
 
+$modversion['templates'][5]['file'] = 'donationreview.html';
+$modversion['templates'][5]['description'] = 'Review and Search of Donations';
+
 
 $modversion['blocks'][1]['file'] = "oscgivnav.php";
 $modversion['blocks'][1]['name'] = 'OSC Giving Navigation';

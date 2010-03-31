@@ -47,6 +47,17 @@ if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
     redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 }
 
+$donations=array();
+$donation_handler = &xoops_getmodulehandler('donation', 'oscgiving');
+
+$person_handler = &xoops_getmodulehandler('person', 'oscmembership');
+
+$donations=$donation_handler->getDonations();
+
+$xoopsTpl->assign('donations',$donations);
+
+
+
 
 include(XOOPS_ROOT_PATH."/footer.php");
 

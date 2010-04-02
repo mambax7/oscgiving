@@ -12,7 +12,7 @@ $modversion['dirname'] = "oscgiving";
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 $modversion['tables'][0] = "oscgiving_donationamounts";
 $modversion['tables'][1] = "oscgiving_donationfunds";
-$modversion['tables'][2] = "oscgiving_donations";
+$modversion['tables'][2] = "oscgiving_donation";
 $modversion['tables'][3] = "oscgiving_settings";
 
 // Templates

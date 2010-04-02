@@ -47,6 +47,19 @@ if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
     redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
 }
 
+include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
+
+
+$oscgiving_donation_handler = icms_getModuleHandler('donation');
+
+$objectTable = new IcmsPersistableTable($oscgiving_donation_handler);
+$objectTable->addColumn(new IcmsPersistableColumn('amount'));
+
+//$objectTable->addIntroButton('adddonation', 'donation.php?op=mod', _AM_OSCTEST_DONATION_CREATE);
+$icmsTpl->assign('oscgiving_donation_table', $objectTable->fetch());
+//$icmsAdminTpl->display('db:osctest_admin_donation.html');
+
+/*
 $donations=array();
 $donation_handler = &xoops_getmodulehandler('donation', 'oscgiving');
 
@@ -56,7 +69,7 @@ $donations=$donation_handler->getDonations();
 
 $xoopsTpl->assign('donations',$donations);
 
-
+*/
 
 
 include(XOOPS_ROOT_PATH."/footer.php");

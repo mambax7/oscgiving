@@ -1,5 +1,6 @@
 <table class='outer' align='center' width='40%'>
 <tr><th>Donation Date</th><th>Envelope Number or Last Name</th><th>Fund</th><th>Amount</th><th>Payment Type</th><th width='15'>Check Number</th></tr>
+</table>
 
 <{foreach item=donation from=$donations}>
 <{ if $donation->getVar('oddrow') == true }>
@@ -17,5 +18,5 @@
 </td><td>General Donation</td><td>$40.23</td><TD>Check</TD><td>177</td></tr>
 <{/foreach}>
 
+<{$oscgiving_donation_table}>
 
-<tr class='even'><td><input type='text' name='donationdate8' .  id='donationdate8' size='10' maxlength='25' value='2010-03-17' /><input type='reset' value=' ... ' onclick='return showCalendar("donationdate8");'></td><td nowrap><input type='text' name='donationenvorname8' id='donationenvorname8'  size='30' maxlength='50' value=''></td><td><select name='fund8'  id='fund8'><option value="1">General Donation</option><option value="2">Missions</option><option value="3">Building</option></select></td><td><input type='text' name='donationamount8' id='donation8' size='8' maxlength='8' value=''></td><TD><select name='paymenttype8'><option  value='1'>Cash</option><option  value='2'>Check</option><option  value='3'>Credit</option></select></TD><td><input size='5' type=text  name="checknumber8" id="checknumber8" value=""><input type=hidden name="envelope8" id="envelope8" value=""></td></tr></table>

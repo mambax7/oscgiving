@@ -20,12 +20,48 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
+if (!defined("ICMS_ROOT_PATH")) die("ICMS root path not defined");
 
-class  Donation extends XoopsObject {
+// including the IcmsPersistabelSeoObject
+include_once ICMS_ROOT_PATH . '/kernel/icmspersistableobject.php';
+include_once(ICMS_ROOT_PATH . '/modules/osctest/include/functions.php');
+
+class  Donation extends IcmsPersistableObject {
     var $db;
     var $table;
     var $searchpersons;
 
+	/**
+	 * Constructor
+	 *
+	 * @param object $handler donationPostHandler object
+	 */
+	public function __construct(& $handler) {
+		global $icmsConfig;
+
+		$this->IcmsPersistableObject($handler);
+
+		$this->db = &Database::getInstance();
+		$this->table = $this->db->prefix("oscgiving_donation");
+		$this->quickInitVar('don_id',XOBJ_DTYPE_INT);
+		$this->quickInitVar('personid',XOBJ_DTYPE_INT);
+		$this->quickInitVar('don_PaymentType',XOBJ_DTYPE_INT);
+		$this->quickInitVar('don_CheckNumber',XOBJ_DTYPE_INT);
+		$this->quickInitVar('don_Date',XOBJ_DTYPE_INT);
+		$this->quickInitVar('don_Envelope',XOBJ_DTYPE_INT);
+		$this->quickInitVar('dna_Amount',XOBJ_DTYPE_INT);
+		$this->quickInitVar('dna_fun_id',XOBJ_DTYPE_INT);
+		
+		$this->quickInitVar('personlastname',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('personfirstname',XOBJ_DTYPE_TXTBOX);
+		$this->searchperson=array();
+	//	$this->initVar('searchpersons',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('searchvalue',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('iteration',XOBJ_DTYPE_TXTBOX);
+
+	}
+
+/*
     function Donation()
     {
         $this->db = &Database::getInstance();
@@ -47,12 +83,20 @@ class  Donation extends XoopsObject {
 	$this->initVar('iteration',XOBJ_DTYPE_TXTBOX);
 	
      }
-
+*/
 }    
     
 
-class oscGivingDonationHandler extends XoopsObjectHandler
+class oscGivingDonationHandler extends IcmsPersistableObjectHandler
 {
+	/**
+	 * Constructor
+	 */
+
+	public function __construct(& $db) {
+		$this->IcmsPersistableObjectHandler($db, 'donation', 'donation_id', 'amount', 'amount', 'oscgiving');
+	}
+
 
     function &create($isNew = true)
     {

@@ -52,11 +52,26 @@ include_once ICMS_ROOT_PATH."/kernel/icmspersistabletable.php";
 
 $oscgiving_donation_handler = icms_getModuleHandler('donation');
 
+$oscgiving_donation_handler->addPermission('view','View Only');
+
+$oscgiving_donation_handler->generalSQL='SELECT donation.*, person.lastname, person.firstname, amt.dna_Amount, funds.fund_Name FROM icms121b_oscgiving_donation AS donation join icms121b_oscmembership_person AS person ON donation.don_DonorID = person.id
+LEFT JOIN icms121b_oscgiving_donationamounts amt ON donation.don_id=amt.don_id
+LEFT JOIN icms121b_oscgiving_donationfunds funds ON amt.dna_fun_ID = funds.fund_id ';
+
+
 $objectTable = new IcmsPersistableTable($oscgiving_donation_handler);
-$objectTable->addColumn(new IcmsPersistableColumn('amount'));
+
+$objectTable->addColumn(new IcmsPersistableColumn('don_Date',_GLOBAL_LEFT,false,false,false,'Donation Date'));
+$objectTable->addColumn(new IcmsPersistableColumn('don_PaymentType',_GLOBAL_LEFT,false,false,false,'Payment Type'));
+$objectTable->addcolumn(new IcmsPersistableColumn('lastname',_GLOBAL_LEFT,false,false,false,'Last Name'));
+$objectTable->addcolumn(new IcmsPersistableColumn('firstname',_GLOBAL_LEFT,false,false,false,'First Name'));
+$objectTable->addcolumn(new IcmsPersistableColumn('dna_Amount',_GLOBAL_LEFT,false,false,false,'Amount'));
+$objectTable->addcolumn(new IcmsPersistableColumn('fund_Name',_GLOBAL_LEFT,false,false,false,'Fund'));
+
+//$objectTable->addColumn(new IcmsPersistableColumn('don_Date'));
 
 //$objectTable->addIntroButton('adddonation', 'donation.php?op=mod', _AM_OSCTEST_DONATION_CREATE);
-$icmsTpl->assign('oscgiving_donation_table', $objectTable->fetch());
+$icmsTpl->assign('oscgiving_donation_table', $objectTable->fetch(true));
 //$icmsAdminTpl->display('db:osctest_admin_donation.html');
 
 /*

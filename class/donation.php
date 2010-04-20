@@ -24,7 +24,7 @@ if (!defined("ICMS_ROOT_PATH")) die("ICMS root path not defined");
 
 // including the IcmsPersistabelSeoObject
 include_once ICMS_ROOT_PATH . '/kernel/icmspersistableobject.php';
-include_once(ICMS_ROOT_PATH . '/modules/osctest/include/functions.php');
+include_once(ICMS_ROOT_PATH . '/modules/oscgiving/include/functions.php');
 
 class  Donation extends IcmsPersistableObject {
     var $db;
@@ -42,8 +42,10 @@ class  Donation extends IcmsPersistableObject {
 		$this->IcmsPersistableObject($handler);
 
 		$this->db = &Database::getInstance();
-		$this->table = $this->db->prefix("oscgiving_donation");
-		$this->quickInitVar('don_id',XOBJ_DTYPE_INT);
+		$this->table = 'oscgiving_donation';
+
+//		$this->table = $this->db->prefix("oscgiving_donation");
+		$this->quickInitVar('don_id',XOBJ_DTYPE_INT,true);
 		$this->quickInitVar('personid',XOBJ_DTYPE_INT);
 		$this->quickInitVar('don_PaymentType',XOBJ_DTYPE_INT);
 		$this->quickInitVar('don_CheckNumber',XOBJ_DTYPE_INT);
@@ -52,8 +54,10 @@ class  Donation extends IcmsPersistableObject {
 		$this->quickInitVar('dna_Amount',XOBJ_DTYPE_INT);
 		$this->quickInitVar('dna_fun_id',XOBJ_DTYPE_INT);
 		
-		$this->quickInitVar('personlastname',XOBJ_DTYPE_TXTBOX);
-		$this->quickInitVar('personfirstname',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('lastname',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('firstname',XOBJ_DTYPE_TXTBOX);
+		$this->quickInitVar('fund_Name',XOBJ_DTYPE_TXTBOX);
+
 		$this->searchperson=array();
 	//	$this->initVar('searchpersons',XOBJ_DTYPE_TXTBOX);
 		$this->quickInitVar('searchvalue',XOBJ_DTYPE_TXTBOX);
@@ -94,13 +98,13 @@ class oscGivingDonationHandler extends IcmsPersistableObjectHandler
 	 */
 
 	public function __construct(& $db) {
-		$this->IcmsPersistableObjectHandler($db, 'donation', 'donation_id', 'amount', 'amount', 'oscgiving');
+		$this->IcmsPersistableObjectHandler($db, 'donation', 'don_id', 'don_id', 'don_id', 'oscgiving');
 	}
 
 
     function &create($isNew = true)
     {
-        $donation = new Donation();
+        $donation = new Donation($this);
         if ($isNew) {
             $donation->setNew();
         }

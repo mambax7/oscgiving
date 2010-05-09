@@ -1,22 +1,4 @@
-<table class='outer' align='center' width='40%'>
-<tr><th>Donation Date</th><th>Envelope Number or Last Name</th><th>Fund</th><th>Amount</th><th>Payment Type</th><th width='15'>Check Number</th></tr>
-</table>
 
-<{foreach item=donation from=$donations}>
-<{ if $donation->getVar('oddrow') == true }>
-<tr class="odd">
-<{/if}>
-<{ if $donation->getVar('oddrow') == false }>
-<tr class="even">
-<{/if}>
-
-<td>
-<{$donation->getVar('date')}>
-</td><td nowrap>
-<{$donation->getVar('personlastname')}>
-
-</td><td>General Donation</td><td>$40.23</td><TD>Check</TD><td>177</td></tr>
-<{/foreach}>
 
 <{$oscgiving_donation_table}>
 

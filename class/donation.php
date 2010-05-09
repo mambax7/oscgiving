@@ -38,11 +38,10 @@ class  Donation extends IcmsPersistableObject {
 	 */
 	public function __construct(& $handler) {
 		global $icmsConfig;
-
 		$this->IcmsPersistableObject($handler);
 
-		$this->db = &Database::getInstance();
-		$this->table = 'oscgiving_donation';
+//		$this->db = &Database::getInstance();
+		$this->table = $handler->db->prefix('oscgiving_donation');
 
 //		$this->table = $this->db->prefix("oscgiving_donation");
 		$this->quickInitVar('don_id',XOBJ_DTYPE_INT,true);
@@ -51,18 +50,25 @@ class  Donation extends IcmsPersistableObject {
 		$this->quickInitVar('don_CheckNumber',XOBJ_DTYPE_INT);
 		$this->quickInitVar('don_Date',XOBJ_DTYPE_INT);
 		$this->quickInitVar('don_Envelope',XOBJ_DTYPE_INT);
-		$this->quickInitVar('dna_Amount',XOBJ_DTYPE_INT);
+//		$this->quickInitVar('dna_Amount',XOBJ_DTYPE_INT);
 		$this->quickInitVar('dna_fun_id',XOBJ_DTYPE_INT);
 		
-		$this->quickInitVar('lastname',XOBJ_DTYPE_TXTBOX);
-		$this->quickInitVar('firstname',XOBJ_DTYPE_TXTBOX);
-		$this->quickInitVar('fund_Name',XOBJ_DTYPE_TXTBOX);
+//		$this->quickInitVar('lastname',XOBJ_DTYPE_TXTBOX);
+//		$this->quickInitVar('firstname',XOBJ_DTYPE_TXTBOX);
+//		$this->quickInitVar('fund_Name',XOBJ_DTYPE_TXTBOX);
 
 		$this->searchperson=array();
 	//	$this->initVar('searchpersons',XOBJ_DTYPE_TXTBOX);
 		$this->quickInitVar('searchvalue',XOBJ_DTYPE_TXTBOX);
 		$this->quickInitVar('iteration',XOBJ_DTYPE_TXTBOX);
 
+		$this->initNonPersistableVar('firstname',XOBJ_DTYPE_TXTBOX,'person');
+
+		$this->initNonPersistableVar('lastname',XOBJ_DTYPE_TXTBOX,'person');
+
+		$this->initNonPersistableVar('dna_Amount',XOBJ_DTYPE_TXTBOX,'amt');
+
+		$this->initNonPersistableVar('fund_Name',XOBJ_DTYPE_TXTBOX,'funds');
 	}
 
 /*
@@ -214,7 +220,7 @@ class oscGivingDonationHandler extends IcmsPersistableObjectHandler
 	
 	$persons=array();
 
-	$sql="select distinct p.* from " . $this->db->prefix("oscmembership_person") . " p, " . $this->db->prefix("oscgiving_donations") . " d where id= don_DonorID and year(d.don_Date)=" . $year;
+	$sql="select distinct p.* from " . $this->db->prefix("oscmembership_person") . " p, " . $this->db->prefix("oscgiving_donation") . " d where id= don_DonorID and year(d.don_Date)=" . $year;
 	
 	$result=$this->db->query($sql);
 	
@@ -237,7 +243,7 @@ class oscGivingDonationHandler extends IcmsPersistableObjectHandler
     	$donations=array();
     	$donation=$this->create(False);
    
-	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
 on d.don_id = da.don_id
 where d.don_DonorID= " . $personid . "
 and year(d.don_Date)=" . $lyear;
@@ -299,7 +305,7 @@ and year(d.don_Date)=" . $lyear;
     
     function &getDonationsbydate($thisdate)
     {
-	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
 on d.don_id = da.don_id
 where d.don_Date='" . $thisdate . "'";
 
@@ -322,7 +328,7 @@ where d.don_Date='" . $thisdate . "'";
     function &getDonationbyYearMonth($year)
     {
 
-	$sql= "SELECT date_format(don_Date, '%m') as month, sum(dna_Amount) as Total, date_format(don_Date, '%Y') as year, date_format(don_Date, '%b %Y') as monthyear FROM " . $this->db->prefix("oscgiving_donations") . " d LEFT JOIN " . $this->db->prefix("oscgiving_donationamounts") . " da  ON d.don_id = da.don_id GROUP BY monthyear HAVING year = '" . $year . "'ORDER BY month ASC"  ;
+	$sql= "SELECT date_format(don_Date, '%m') as month, sum(dna_Amount) as Total, date_format(don_Date, '%Y') as year, date_format(don_Date, '%b %Y') as monthyear FROM " . $this->db->prefix("oscgiving_donation") . " d LEFT JOIN " . $this->db->prefix("oscgiving_donationamounts") . " da  ON d.don_id = da.don_id GROUP BY monthyear HAVING year = '" . $year . "'ORDER BY month ASC"  ;
 
 	$donationyear=array();
 	$result=$this->db->query($sql);
@@ -342,7 +348,7 @@ where d.don_Date='" . $thisdate . "'";
 
     function &getDonations()
     {
-	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donations") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
 on d.don_id = da.don_id ";
 //where d.don_Date='" . $thisdate . "'";
 

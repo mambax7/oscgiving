@@ -11,6 +11,15 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include
 
 include(XOOPS_ROOT_PATH."/header.php");
 
+if (file_exists(XOOPS_ROOT_PATH. "/modules/" . 	$xoopsModule->getVar('dirname') .  "/language/" . $xoopsConfig['language'] . "/modinfo.php")) 
+{
+    include XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/" . $xoopsConfig['language'] . "/modinfo.php";
+}
+elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') ."/language/english/modinfo.php"))
+{ include XOOPS_ROOT_PATH ."/modules/" . $xoopsModule->getVar('dirname') . "/language/english/modinfo.php";
+
+}
+
 //redirect
 if (!$xoopsUser)
 {

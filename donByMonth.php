@@ -26,13 +26,24 @@
 
 include_once "../../mainfile.php";
 
+
+
+include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
+
+if (file_exists(XOOPS_ROOT_PATH. "/modules/" . 	$xoopsModule->getVar('dirname') .  "/language/" . $xoopsConfig['language'] . "/modinfo.php")) 
+{
+    include XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/" . $xoopsConfig['language'] . "/modinfo.php";
+}
+elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') ."/language/english/modinfo.php"))
+{ include XOOPS_ROOT_PATH ."/modules/" . $xoopsModule->getVar('dirname') . "/language/english/modinfo.php";
+
+}
+
 //redirect
 if (!$xoopsUser)
 {
-    redirect_header(XOOPS_URL."/user.php", 3, _AD_NORIGHT);
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
 }
-
-include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
 
 if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {
@@ -45,14 +56,6 @@ if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
 
 if(isset($_GET['year'])) $iyear=$_GET['year'];
 
-if (file_exists(XOOPS_ROOT_PATH. "/modules/" . 	$xoopsModule->getVar('dirname') .  "/language/" . $xoopsConfig['language'] . "/modinfo.php")) 
-{
-    include XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/language/" . $xoopsConfig['language'] . "/modinfo.php";
-}
-elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') ."/language/english/modinfo.php"))
-{ include XOOPS_ROOT_PATH ."/modules/" . $xoopsModule->getVar('dirname') . "/language/english/modinfo.php";
-
-}
 
 require XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . "/include/jpgraph-1.13/src/jpgraph.php";
 

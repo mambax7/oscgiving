@@ -25,11 +25,6 @@
 include("../../mainfile.php");
 $GLOBALS['xoopsOption']['template_main'] ="donationreview.html";
 
-//redirect
-if (!$xoopsUser)
-{
-    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
-}
 
 
 include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
@@ -37,6 +32,12 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include
 include_once(XOOPS_ROOT_PATH . "/class/xoopsformloader.php");
 include(XOOPS_ROOT_PATH."/header.php");
 include(XOOPS_ROOT_PATH."/modules/" . $xoopsModule->getVar('dirname') . "/class/oscgivradio.php");
+
+//redirect
+if (!$xoopsUser)
+{
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
 
 if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {

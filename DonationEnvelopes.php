@@ -46,6 +46,12 @@ elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirnam
 
 }
 
+//redirect
+if (!$xoopsUser)
+{
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
+
 
 if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {

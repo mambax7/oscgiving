@@ -68,6 +68,23 @@ elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirnam
 
 }
 
+//redirect
+if (!$xoopsUser)
+{
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
+
+include_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/include/functions.php';
+
+if(hasPerm("oscgiving_modify",$xoopsUser)) 
+{
+$ispermmodify=true;
+}
+if(!($ispermmodify==true) & !($xoopsUser->isAdmin($xoopsModule->mid())))
+{
+    redirect_header(XOOPS_URL , 3, _oscgiv_accessdenied);
+}
+
 
 require XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . "/include/jpgraph-1.13/src/jpgraph.php";
 

@@ -28,11 +28,6 @@
 
 include_once "../../mainfile.php";
 
-//redirect
-if (!$xoopsUser)
-{
-    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
-}
 
 require (XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/ReportConfig.php");
 
@@ -42,6 +37,12 @@ require (XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/inc
 //require XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/class_fpdf_labels.php";
 
 require XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/functions.php";
+
+//redirect
+if (!$xoopsUser)
+{
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
 
 if(hasPerm("oscgiving_modify",$xoopsUser)) 
 {

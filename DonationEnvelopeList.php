@@ -26,11 +26,6 @@
 
 include_once "../../mainfile.php";
 
-//redirect
-if (!$xoopsUser)
-{
-    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
-}
 
 
 
@@ -51,6 +46,11 @@ elseif( file_exists(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirnam
 
 }
 
+//redirect
+if (!$xoopsUser)
+{
+    redirect_header(XOOPS_URL."/user.php", 3, _oscgiv_accessdenied);
+}
 
 
 require XOOPS_ROOT_PATH . "/modules/" . $xoopsModule->getVar('dirname') . "/include/functions.php";

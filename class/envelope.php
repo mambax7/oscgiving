@@ -51,7 +51,7 @@ class oscGivingEnvelopeHandler extends XoopsObjectHandler
     {
     	$aEnvelopeOptions=array();
     
-    	$sSQL = "SELECT DISTINCT envelope AS iEnvelope FROM " . $this->db->prefix("oscmembership_person") . " WHERE envelope != 'NULL' ORDER BY envelope ASC";
+    	$sSQL = "SELECT DISTINCT envelope AS iEnvelope FROM " . $this->db->prefix("oscmembership_person") . " WHERE envelope != null ORDER BY envelope ASC";
 	$result = $this->db->query($sSQL);
 	$lastEnvelope = 0;
 	$numOptions = 0;
@@ -78,6 +78,7 @@ class oscGivingEnvelopeHandler extends XoopsObjectHandler
 	$person=$person_handler->create(false);
 	
 	$unusedenv=$this->getlistofunusedenvelopes();
+print_r($unusedenv);
 	$aEnvelopeOptions=$unusedenv[0];
 	$numOptions=$unusedenv[1];
 	

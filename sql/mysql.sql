@@ -28,6 +28,11 @@ CREATE TABLE `oscgiving_donations` (
   KEY `don_Date` (`don_Date`)
 ) ;
 
+CREATE TABLE `oscgiving_paymenttypes` (
+  `don_PaymentType` tinyint(4) NOT NULL,
+  `paymenttypename` varchar(10) NOT NULL,
+  PRIMARY KEY  (`don_PaymentType`)
+);
 -- One Row Table
 CREATE TABLE `oscgiving_settings` (
   `id` mediumint(9) unsigned NOT NULL ,
@@ -47,3 +52,6 @@ VALUES (1,'true','General Donation','Default fund: General operating expenses.')
 INSERT INTO oscgiving_donationfunds VALUES(2,'true','Missions','Support for missions.');
 
 INSERT INTO oscgiving_donationfunds VALUES(3,'true','Building','New Building Fund');
+
+INSERT INTO oscgiving_paymenttypes VALUES(1,'Cash');
+INSERT INTO oscgiving_paymenttypes VALUES(2,'Check');

@@ -1,0 +1,24 @@
+== oscGiving 4.0 revised ==
+Status: Release Candidate
+Released: RC1
+
+Added
+* Changelog.txt
+* donationreview.php
+
+Improved
+* Use of language constants
+
+Fixed
+* DonationEnvelopes.php Assignment of unused envelope numbers
+
+Language additions/changes
+* modinfo.php
+define("_oscgiv_nav_donationenvelopes","Donation Envelopes");
+
+
+Contributors to this release
+* skenow
+* srmcatee
+
+

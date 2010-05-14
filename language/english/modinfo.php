@@ -32,6 +32,8 @@ define("_oscgiv_nav_donationenvelopes","Donation Envelopes");
 
 define("_oscgiv_nav_donationbatchentry","Donation Batch Entries");
 
+define("_oscgiv_nav_donationreview","Donation Review");
+
 define("_oscgiv_envelopeassignment_success","Envelope Assignment Success");
 
 define("_oscgiv_membersaffected","Members affected");

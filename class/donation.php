@@ -69,6 +69,11 @@ class  Donation extends IcmsPersistableObject {
 		$this->initNonPersistableVar('dna_Amount',XOBJ_DTYPE_TXTBOX,'amt');
 
 		$this->initNonPersistableVar('fund_Name',XOBJ_DTYPE_TXTBOX,'funds');
+
+		$this->initNonPersistableVar('paymenttypename',XOBJ_DTYPE_TXTBOX,'payment');
+
+	
+
 	}
 
 /*
@@ -117,6 +122,18 @@ class oscGivingDonationHandler extends IcmsPersistableObjectHandler
         return $donation;
     }
     
+	function &donationSQL()
+	{
+		$returnSQL='SELECT * FROM ' . $this->db->prefix('oscgiving_donation') . ' AS donation join ' . $this->db->prefix('oscmembership_person') . ' AS person ON donation.don_DonorID = person.id LEFT JOIN ' . $this->db->prefix('oscgiving_donationamounts') . ' amt ON donation.don_id=amt.don_id LEFT JOIN ' . $this->db->prefix('oscgiving_donationfunds') . ' funds ON amt.dna_fun_ID = funds.fund_id LEFT JOIN ' . $this->db->prefix('oscgiving_paymenttypes') . ' pt ON donation.don_PaymentType = pt.don_PaymentType  ';
+
+		return $returnSQL;
+	}
+
+	function getPaymenttypes_array()
+	{
+		return array('cash' => 1);
+
+	}
     function &lookupDonator($lookupvalue)
     {
     
@@ -243,10 +260,7 @@ class oscGivingDonationHandler extends IcmsPersistableObjectHandler
     	$donations=array();
     	$donation=$this->create(False);
    
-	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
-on d.don_id = da.don_id
-where d.don_DonorID= " . $personid . "
-and year(d.don_Date)=" . $lyear;
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da on d.don_id = da.don_id where d.don_DonorID= " . $personid . " and year(d.don_Date)=" . $lyear;
 
 	$result=$this->db->query($sql);
 	
@@ -305,9 +319,7 @@ and year(d.don_Date)=" . $lyear;
     
     function &getDonationsbydate($thisdate)
     {
-	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da
-on d.don_id = da.don_id
-where d.don_Date='" . $thisdate . "'";
+	$sql="select d.*, da.dna_Amount, da.dna_fun_ID from " . $this->db->prefix("oscgiving_donation") . " d join " . $this->db->prefix("oscgiving_donationamounts") . " da on d.don_id = da.don_id where d.don_Date='" . $thisdate . "'";
 
     	$donations=array();
     	$donation=$this->create(False);

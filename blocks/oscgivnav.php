@@ -46,7 +46,14 @@ $content_block="
 <table class=navbar >
 <tr><TD align=center ><small>
 <a class=navbar href='" . XOOPS_URL . "/modules/oscgiving/index.php" . "'>" .  _oscgiv_nav_donationenvelopes . "</a>
-</small></td><td>|</td><td align=center><small>
+</small></td><td>|</td>
+<td align=center><small>
+
+<a href='" . XOOPS_URL . "/modules/oscgiving/donationreview.php'> " . _oscgiv_nav_donationreview . "</a>
+</small></td>
+<td>|</td>
+
+<td align=center><small>
 
 <a href='" . XOOPS_URL . "/modules/oscgiving/DonationEditor.php'> " . _oscgiv_nav_donationbatchentry . "</a>
 </small></td>

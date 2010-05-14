@@ -1,12 +1,12 @@
 <?php
 $modversion['name'] = _oscgiv_MOD_NAME;
-$modversion['version'] = "3.8";
+$modversion['version'] = "4.0";
 $modversion['description'] = _oscgiv_MOD_DESC;
 $modversion['credits'] = "Open Source Church Project - http://sourceforge.net/osc";
 $modversion['author'] = "Steve McAtee";
 $modversion['help'] = "help.html";
 $modversion['license'] = "GPL see LICENSE";
-$modversion['official'] = "3.8";
+$modversion['official'] = "4.0";
 $modversion['image'] = "images/module_logo.png";
 $modversion['dirname'] = "oscgiving";
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
@@ -14,6 +14,7 @@ $modversion['tables'][0] = "oscgiving_donationamounts";
 $modversion['tables'][1] = "oscgiving_donationfunds";
 $modversion['tables'][2] = "oscgiving_donation";
 $modversion['tables'][3] = "oscgiving_settings";
+$modversion['tables'][4] = "oscgiving_paymenttypes";
 
 // Templates
 $modversion['templates'][0]['file'] = 'donationenvelope.html';
